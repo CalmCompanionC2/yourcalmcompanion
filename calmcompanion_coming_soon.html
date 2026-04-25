@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalmCompanion™ — Coming Soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f2ea;
+    --warm-white: #faf7f2;
+    --caramel: #c8862a;
+    --caramel-light: #e8a84a;
+    --brown-dark: #2a1a0a;
+    --brown-mid: #6b4a2a;
+    --brown-light: #c8a87a;
+    --sage: #7a8c6a;
+    --text: #1a1208;
+    --text-muted: #8b7355;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+  }
+
+  /* Warm radial glow background */
+  .bg-glow {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(200,134,42,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(122,140,106,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 60%, rgba(200,168,122,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    min-height: 100vh;
+  }
+
+  /* Top eyebrow line */
+  .eyebrow-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--brown-light));
+    margin-bottom: 32px;
+    animation: fadeDown 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  /* Logo mark */
+  .logo-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    animation: fadeUp 1s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .cc-monogram {
+    width: 64px;
+    height: 64px;
+    border: 1.5px solid var(--brown-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .cc-monogram::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--brown-light);
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+
+  .cc-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--caramel);
+    letter-spacing: 2px;
+  }
+
+  .brand-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Main headline */
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    text-align: center;
+    color: var(--brown-dark);
+    margin-bottom: 8px;
+    animation: fadeUp 1s ease 0.5s forwards;
+    opacity: 0;
+    letter-spacing: -1px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: var(--caramel);
+  }
+
+  .headline-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+    color: var(--brown-mid);
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.65s forwards;
+    opacity: 0;
+    letter-spacing: 0px;
+  }
+
+  /* Decorative divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.75s forwards;
+    opacity: 0;
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--brown-light));
+  }
+
+  .divider-line.right {
+    background: linear-gradient(to left, transparent, var(--brown-light));
+  }
+
+  .divider-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--caramel);
+    transform: rotate(45deg);
+  }
+
+  /* Description */
+  .description {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(14px, 2vw, 17px);
+    font-weight: 300;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--brown-mid);
+    max-width: 520px;
+    margin-bottom: 56px;
+    animation: fadeUp 1s ease 0.85s forwards;
+    opacity: 0;
+    letter-spacing: 0.2px;
+  }
+
+  /* Email form */
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 64px;
+    animation: fadeUp 1s ease 1s forwards;
+    opacity: 0;
+  }
+
+  .form-label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .form-row {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--brown-light);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+
+  .form-input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+
+  .form-input::placeholder {
+    color: var(--brown-light);
+  }
+
+  .form-btn {
+    padding: 14px 24px;
+    background: var(--caramel);
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: white;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .form-btn:hover {
+    background: var(--caramel-light);
+  }
+
+  .form-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--brown-light);
+    letter-spacing: 0.3px;
+  }
+
+  /* Three pillars */
+  .pillars {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 64px;
+    animation: fadeUp 1s ease 1.1s forwards;
+    opacity: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    max-width: 140px;
+  }
+
+  .pillar-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--brown-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0.8;
+  }
+
+  .pillar-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .pillar-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--brown-mid);
+    line-height: 1.5;
+  }
+
+  /* Animal hint */
+  .animal-hint {
+    font-size: 48px;
+    margin-bottom: 16px;
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+    display: block;
+  }
+
+  /* Bottom tagline */
+  .bottom-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--brown-light);
+    text-align: center;
+    letter-spacing: 1px;
+    animation: fadeUp 1s ease 1.2s forwards;
+    opacity: 0;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+    text-align: center;
+    border-top: 1px solid rgba(200,168,122,0.2);
+  }
+
+  .footer-text {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--brown-light);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .pillars { gap: 28px; }
+    .form-row { flex-direction: column; }
+    .form-btn { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="page">
+  <main>
+
+    <div class="eyebrow-line"></div>
+
+    <div class="logo-mark">
+      <div class="cc-monogram">
+        <span class="cc-text">CC</span>
+      </div>
+      <span class="brand-name">CalmCompanion™</span>
+    </div>
+
+    <span class="animal-hint">🐄</span>
+
+    <h1 class="headline">Wired for <em>calm.</em></h1>
+    <p class="headline-sub">Coming soon.</p>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line right"></div>
+    </div>
+
+    <p class="description">
+      A new kind of comfort is on its way. CalmCompanion™ combines the warmth of a weighted stuffed animal with therapeutic haptic technology — designed to help you breathe, slow down, and find your calm.
+    </p>
+
+    <div class="email-form">
+      <span class="form-label">Be the first to know</span>
+      <div class="form-row">
+        <input class="form-input" type="email" placeholder="your@email.com"/>
+        <button class="form-btn">Notify me</button>
+      </div>
+      <span class="form-note">No spam. Just Norman, when he's ready.</span>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🌾</div>
+        <div class="pillar-title">Weighted</div>
+        <div class="pillar-desc">Glass bead fill for deep pressure comfort</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">💚</div>
+        <div class="pillar-title">Haptic</div>
+        <div class="pillar-desc">Four therapeutic vibration modes</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-title">Wireless</div>
+        <div class="pillar-desc">Charges on his nest while you sleep</div>
+      </div>
+    </div>
+
+    <p class="bottom-tagline">"The hug that hugs back."</p>
+
+  </main>
+
+  <footer>
+    <p class="footer-text">CalmCompanion™ &nbsp;·&nbsp; yourcalmcompanion.com &nbsp;·&nbsp; C2 Platform</p>
+  </footer>
+</div>
+</body>
+</html>
