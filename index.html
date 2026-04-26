@@ -387,7 +387,24 @@
     .form-row { flex-direction: column; }
     .form-btn { padding: 12px; }
   }
+
+  /* MailerLite overrides */
+  .ml-embedded { width: 100%; max-width: 420px; }
+  .ml-embedded .ml-form-embedWrapper { background: transparent !important; border: none !important; padding: 0 !important; }
+  .ml-embedded input[type="email"] { font-family: 'Jost', sans-serif !important; font-size: 13px !important; border: 1px solid var(--brown-light) !important; background: var(--warm-white) !important; }
+  .ml-embedded button[type="submit"] { background: var(--caramel) !important; font-family: 'Jost', sans-serif !important; letter-spacing: 3px !important; text-transform: uppercase !important; }
+  .ml-embedded button[type="submit"]:hover { background: var(--caramel-light) !important; }
 </style>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2294705');
+</script>
+<!-- End MailerLite Universal -->
 </head>
 <body>
 <div class="bg-glow"></div>
@@ -420,10 +437,7 @@
 
     <div class="email-form">
       <span class="form-label">Be the first to know</span>
-      <div class="form-row">
-        <input class="form-input" type="email" placeholder="your@email.com"/>
-        <button class="form-btn">Notify me</button>
-      </div>
+      <div class="ml-embedded" data-form="6kEI01"></div>
       <span class="form-note">No spam. Just Norman, when he's ready.</span>
     </div>
 
