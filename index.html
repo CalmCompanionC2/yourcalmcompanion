@@ -498,6 +498,20 @@
   </footer>
 </div>
 
+<!-- Hidden iframe to catch Google Form response without redirect -->
+<iframe name="hidden-form-target" style="display:none;"></iframe>
+
+<!-- Hidden Google Form that submits via iframe -->
+<form
+  id="gform"
+  action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScHAyGD7GHfZPJG3pYdkP6NKJ_hzAMEmox2qme1zoB4bhJNYA/formResponse"
+  method="POST"
+  target="hidden-form-target"
+  style="display:none;"
+>
+  <input type="text" name="entry.429953798" id="gformEmail"/>
+</form>
+
 <script>
   function submitEmail() {
     const input = document.getElementById('emailInput');
@@ -507,7 +521,6 @@
     const error = document.getElementById('formError');
     const email = input.value.trim();
 
-    // Basic validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       error.style.display = 'block';
@@ -519,32 +532,17 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    // Submit to Google Form via no-cors fetch
-    const formId = '1FAIpQLScHAyGD7GHfZPJG3pYdkP6NKJ_hzAMEmox2qme1zoB4bhJNYA';
-    const entryId = 'entry.429953798';
-    const url = `https://docs.google.com/forms/u/0/d/e/${formId}/formResponse`;
+    // Copy email into hidden form and submit it
+    document.getElementById('gformEmail').value = email;
+    document.getElementById('gform').submit();
 
-    const body = new FormData();
-    body.append(entryId, email);
-
-    fetch(url, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: body
-    })
-    .then(() => {
-      // no-cors always resolves — treat as success
+    // Show success after short delay
+    setTimeout(function() {
       formRow.style.display = 'none';
       success.style.display = 'flex';
-    })
-    .catch(() => {
-      // Even on network error, Google likely got it — show success
-      formRow.style.display = 'none';
-      success.style.display = 'flex';
-    });
+    }, 800);
   }
 
-  // Allow Enter key to submit
   document.getElementById('emailInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') submitEmail();
   });
