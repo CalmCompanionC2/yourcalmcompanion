@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CalmCompanion™ — Coming Soon</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/CalmCompanionC2/yourcalmcompanion/refs/heads/main/favcon.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/CalmCompanionC2/yourcalmcompanion/refs/heads/main/favicon.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/CalmCompanionC2/yourcalmcompanion/refs/heads/main/favcon180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -87,32 +88,10 @@
     opacity: 0;
   }
 
-  .cc-monogram {
-    width: 56px;
-    height: 56px;
-    border: 1.5px solid var(--brown-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .cc-monogram::before {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border: 1px solid var(--brown-light);
-    border-radius: 50%;
-    opacity: 0.4;
-  }
-
-  .cc-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--gold);
-    letter-spacing: 2px;
+  .norman-submark {
+    width: 64px;
+    height: auto;
+    display: block;
   }
 
   .norman-wrap {
@@ -267,172 +246,4 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    text-align: center;
-    max-width: 140px;
-  }
-
-  .pillar-icon {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--brown-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    opacity: 0.8;
-  }
-
-  .pillar-title {
-    font-family: 'Jost', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .pillar-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--brown-mid);
-    line-height: 1.5;
-  }
-
-  .bottom-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(13px, 2vw, 16px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--brown-light);
-    text-align: center;
-    letter-spacing: 1px;
-    animation: fadeUp 1s ease 1.2s forwards;
-    opacity: 0;
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    padding: 24px;
-    text-align: center;
-    border-top: 1px solid rgba(200,168,122,0.2);
-  }
-
-  .footer-text {
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--brown-light);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  @media (max-width: 600px) {
-    .pillars { gap: 28px; }
-    .norman-img { width: 220px; }
-  }
-
-  .ml-embedded { width: 100%; max-width: 420px; }
-  .ml-embedded .ml-form-embedWrapper { background: transparent !important; border: none !important; padding: 0 !important; }
-  .ml-embedded input[type="email"] { font-family: 'Jost', sans-serif !important; font-size: 13px !important; border: 1px solid var(--brown-light) !important; background: var(--warm-white) !important; }
-  .ml-embedded button[type="submit"] { background: var(--gold) !important; font-family: 'Jost', sans-serif !important; letter-spacing: 3px !important; text-transform: uppercase !important; }
-  .ml-embedded button[type="submit"]:hover { background: var(--gold-light) !important; }
-</style>
-
-<script>
-  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-  .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-  n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-  (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-  ml('account', '2294705');
-</script>
-
-</head>
-<body>
-<div class="bg-glow"></div>
-<div class="page">
-  <main>
-
-    <div class="eyebrow-line"></div>
-
-    <div class="logo-mark">
-      <div class="cc-monogram">
-        <span class="cc-text">CC</span>
-      </div>
-    </div>
-
-    <div class="norman-wrap">
-      <img
-        class="norman-img"
-        src="https://raw.githubusercontent.com/CalmCompanionC2/yourcalmcompanion/refs/heads/main/norman_character.png"
-        alt="Norman — CalmCompanion therapeutic haptic highland cow"
-      />
-      <span class="meet-norman">Meet Norman.</span>
-    </div>
-
-    <h1 class="headline">Wired for <em>calm.</em></h1>
-    <p class="tagline">Calm, by Design™</p>
-    <p class="coming-soon">Coming soon.</p>
-
-    <div class="divider">
-      <div class="divider-line"></div>
-      <div class="divider-diamond"></div>
-      <div class="divider-line right"></div>
-    </div>
-
-    <p class="description">
-      A new kind of comfort is on its way. CalmCompanion™ combines the warmth of a weighted stuffed animal with therapeutic haptic technology — designed to help you breathe, slow down, and find your calm.
-    </p>
-
-    <div class="email-form">
-      <span class="form-label">Be the first to know</span>
-      <div class="ml-embedded" data-form="6kEI01"></div>
-      <span class="form-note">No spam. Just Norman, when he's ready.</span>
-    </div>
-
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-icon">🌾</div>
-        <div class="pillar-title">Weighted</div>
-        <div class="pillar-desc">Glass bead fill for deep pressure comfort</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">💚</div>
-        <div class="pillar-title">Haptic</div>
-        <div class="pillar-desc">Four therapeutic vibration modes</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">⚡</div>
-        <div class="pillar-title">Wireless</div>
-        <div class="pillar-desc">Charges on his nest while you sleep</div>
-      </div>
-    </div>
-
-    <p class="bottom-tagline">"The hug that hugs back."</p>
-
-  </main>
-
-  <footer>
-    <p class="footer-text">CalmCompanion™ &nbsp;·&nbsp; yourcalmcompanion.com &nbsp;·&nbsp; C2 Platform &nbsp;·&nbsp; Calm, by Design™</p>
-  </footer>
-</div>
-
-</body>
-</html>
+    tex
