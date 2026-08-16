@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalmCompanion™ Norman — Phase 3.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:#C8920E;--gold-light:#E8B84A;--navy:#1A3A6B;--cream:#FAF6EE;
+    --brown-dark:#2A1A08;--brown-mid:#6B4A2A;--brown-light:#C8A87A;
+    --sage:#7A8C6A;--muted:#8B7355;--border:rgba(200,146,14,0.15);
+    --pro:#1A3A6B;--pro-light:#2A5098;--pro-bg:#EEF2FA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--brown-dark);padding:56px 40px;}
+  body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+  .page{max-width:900px;margin:0 auto;}
+  .phase-badge{display:inline-flex;align-items:center;gap:10px;background:var(--gold);padding:8px 20px;border-radius:20px;margin-bottom:40px;}
+  .phase-dot{width:8px;height:8px;border-radius:50%;background:white;}
+  .phase-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.9);}
+  .hero{background:linear-gradient(160deg,#0a1f42 0%,#1A3A6B 60%,#2a5098 100%);border-radius:16px;padding:36px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-bottom:32px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,146,14,0.1),transparent);pointer-events:none;}
+  .hero::after{content:'';position:absolute;top:-40%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,14,0.06),transparent 70%);pointer-events:none;}
+  .hero-left{position:relative;z-index:1;}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:16px;}
+  .hero-name{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;color:white;line-height:1;letter-spacing:-1px;margin-bottom:4px;}
+  .hero-model{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;font-weight:300;color:var(--gold-light);margin-bottom:24px;}
+  .hero-desc{font-size:14px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.95);max-width:420px;margin-bottom:28px;}
+  .hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(200,146,14,0.8);border-top:1px solid rgba(200,146,14,0.2);padding-top:20px;}
+  .hero-right{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:1;}
+  .hero-logo{width:100px;height:auto;opacity:0.9;}
+  .hero-price{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:var(--gold-light);line-height:1;text-align:center;}
+  .hero-price-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.85);text-align:center;line-height:1.8;}
+  .patent-badge{background:rgba(200,146,14,0.15);border:1px solid rgba(200,146,14,0.3);border-radius:8px;padding:10px 14px;text-align:center;}
+  .patent-badge-label{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:4px;}
+  .patent-badge-value{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold-light);font-style:italic;}
+  .section-label{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+  .col-card{background:white;border-radius:12px;padding:28px 24px;border:1px solid var(--border);display:flex;flex-direction:column;gap:10px;}
+  .col-card.dark{background:var(--brown-dark);border-color:transparent;}
+  .col-card.navy{background:var(--navy);border-color:transparent;}
+  .col-eyebrow{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);}
+  .col-card.dark .col-eyebrow,.col-card.navy .col-eyebrow{color:rgba(220,170,60,1.0);}
+  .col-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--brown-dark);line-height:1.2;}
+  .col-title em{font-style:italic;color:var(--gold);}
+  .col-card.dark .col-title,.col-card.navy .col-title{color:white;}
+  .col-card.dark .col-title em,.col-card.navy .col-title em{color:var(--gold-light);}
+  .col-body{font-size:12px;font-weight:300;color:var(--brown-mid);line-height:1.7;}
+  .col-card.dark .col-body,.col-card.navy .col-body{color:rgba(255,255,255,0.95);}
+  .lra-band{background:var(--brown-dark);border-radius:16px;padding:48px;margin-bottom:32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .lra-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:12px;}
+  .lra-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:white;line-height:1.1;margin-bottom:12px;}
+  .lra-title em{font-style:italic;color:var(--gold-light);}
+  .lra-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.95);line-height:1.8;margin-bottom:20px;}
+  .lra-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,146,14,0.7);border-top:1px solid rgba(200,146,14,0.15);padding-top:16px;}
+  .lra-right{display:flex;flex-direction:column;gap:14px;}
+  .lra-stat{background:rgba(255,255,255,0.04);border:1px solid rgba(200,146,14,0.15);border-radius:10px;padding:16px 20px;}
+  .lra-stat-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:6px;}
+  .lra-stat-value{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:white;margin-bottom:3px;}
+  .lra-stat-note{font-size:10px;font-weight:300;color:rgba(255,255,255,0.9);line-height:1.5;}
+  .modes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+  .mode-card{background:white;border:1px solid var(--border);border-radius:10px;padding:20px 16px;display:flex;flex-direction:column;gap:8px;text-align:center;}
+  .mode-icon{font-size:24px;}
+  .mode-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--gold);opacity:0.9;line-height:1;}
+  .mode-name{font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--brown-dark);}
+  .mode-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--muted);line-height:1.5;}
+  .mode-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:white;display:inline-block;padding:5px 11px;border-radius:12px;font-weight:600;margin-top:auto;}
+  .motor-section{background:var(--navy);border-radius:16px;padding:40px 48px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .motor-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:12px;}
+  .motor-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:white;line-height:1.1;margin-bottom:12px;}
+  .motor-title em{font-style:italic;color:var(--gold-light);}
+  .motor-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.95);line-height:1.8;}
+  .motor-spatial{display:flex;align-items:center;justify-content:center;gap:16px;padding:16px 0;}
+  .motor-col-center{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .motor-col-side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+  .motor-circle{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0;}
+  .motor-circle.erm{position:relative;border-radius:16px;border-color:rgba(200,146,14,0.85);background:rgba(200,146,14,0.08);}
+  .motor-circle.erm::before{content:'';position:absolute;inset:-7px;border-radius:20px;border:1.5px dashed rgba(200,146,14,0.4);pointer-events:none;}
+  .motor-circle-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;}
+  .motor-circle-label.erm{font-size:9px;color:rgba(220,170,60,0.95);}
+  .motor-circle-num{font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:rgba(220,170,60,1);margin-top:1px;line-height:1;}
+  .motor-circle-sub{font-family:'DM Mono',monospace;font-size:6px;color:rgba(220,170,60,0.8);margin-top:1px;}
+  .motor-connector-v{width:2px;height:20px;background:linear-gradient(to bottom,var(--gold),rgba(200,146,14,0.2));opacity:0.4;}
+  .motor-connector-h{height:2px;width:20px;background:linear-gradient(to right,rgba(200,146,14,0.2),rgba(200,146,14,0.5));opacity:0.6;}
+  .motor-label-small{font-family:'DM Mono',monospace;font-size:7px;color:rgba(240,210,160,0.7);letter-spacing:0.5px;text-align:center;margin-top:4px;}
+  .specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px;}
+  .spec-row{background:white;padding:14px 20px;display:flex;align-items:center;gap:14px;}
+  .spec-icon{font-size:16px;width:24px;text-align:center;flex-shrink:0;}
+  .spec-label{font-size:11px;font-weight:400;color:var(--muted);flex:1;}
+  .spec-value{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--navy);text-align:right;}
+  .for-who{background:var(--navy);border-radius:12px;padding:32px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .for-who-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(220,170,60,1.0);margin-bottom:6px;grid-column:span 2;}
+  .for-who-list{display:flex;flex-direction:column;gap:10px;}
+  .for-who-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;font-weight:300;color:rgba(255,255,255,0.95);line-height:1.5;}
+  .for-who-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;}
+  .hsa{background:white;border:1px solid var(--border);border-radius:12px;padding:24px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .hsa-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .hsa-text{font-size:13px;font-weight:300;color:var(--brown-mid);line-height:1.6;max-width:480px;}
+  .hsa-amount{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--navy);text-align:center;}
+  .hsa-amount-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brown-light);text-align:center;margin-top:4px;}
+  .footer{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border);}
+  .footer-brand{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--brown-dark);}
+  .footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--muted);margin-top:3px;}
+  .footer-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:right;line-height:1.8;letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="phase-badge">
+    <div class="phase-dot"></div>
+    <div class="phase-text">Phase 3.0 · CalmCompanion™ Norman · C2 Build</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">CalmCompanion™ · Norman · Therapeutic Haptic Companion</div>
+      <div class="hero-name">Norman.</div>
+      <div class="hero-model">By CalmCompanion™</div>
+      <div class="hero-desc">A Highland cow stuffed animal with a five-motor haptic system inside — three precision LRA motors for choreographed wave patterns, two ERM motors for continuous ambient presence. Four therapeutic modes. A squeeze-responsive FSR. No wireless emissions. A therapeutic experience that feels less like a device and more like a living presence.</div>
+      <div class="hero-tagline">"Calm, by Design™ — for minds that work differently."</div>
+    </div>
+    <div class="hero-right">
+      <img class="hero-logo" src="data:image/png;base64,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" alt="Norman the Highland cow illustration" style="width:210px;margin-top:20px;">
+      <div class="hero-price">$319</div>
+      <div class="hero-price-note">CalmCompanion™ Norman<br/>USB-C charging · Patent Pending<br/>No wireless emissions</div>
+      <div class="patent-badge">
+        <div class="patent-badge-label">Intellectual Property</div>
+        <div class="patent-badge-value">Patent Pending · 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NORMAN -->
+  <div class="section-label">What makes Norman different</div>
+  <div class="three-col" style="margin-bottom:32px;">
+    <div class="col-card navy">
+      <div class="col-eyebrow">Five motor system</div>
+      <div class="col-title">LRA + ERM <em>layered.</em></div>
+      <div class="col-body">Three precision LRA motors provide directional wave patterns that travel through Norman's body. Two ERM motors add a continuous ambient presence underneath — like an ocean floor beneath the waves. Together they create sensations neither motor type achieves alone.</div>
+    </div>
+    <div class="col-card dark">
+      <div class="col-eyebrow">Choreography</div>
+      <div class="col-title">Five motors. <em>One feel.</em></div>
+      <div class="col-body">Three LRA motors sit vertically in Norman's belly — upper, center, lower — each driven by a DRV2605L haptic driver chip via the PCA9548A I2C multiplexer. Two ERM motors provide continuous ambient vibration, modulated independently per mode for a fully layered therapeutic experience.</div>
+    </div>
+    <div class="col-card">
+      <div class="col-eyebrow">Squeeze responsive</div>
+      <div class="col-title">Norman <em>feels</em> you.</div>
+      <div class="col-body">A force-sensitive resistor (FSR) sits beneath a heart-shaped patch on Norman's back, marking exactly where to press. Two modes respond to it. In Responsive Hug, the harder you squeeze, the stronger Norman responds — a proportional haptic conversation. In Box Breathing, holding the patch runs the session and releasing it pauses — so you decide how long the practice lasts.</div>
+    </div>
+  </div>
+
+  <!-- LRA + ERM FEATURE BAND -->
+  <div class="lra-band">
+    <div>
+      <div class="lra-eyebrow">The Technology · LRA + ERM System</div>
+      <div class="lra-title">From buzz<br>to <em>presence.</em></div>
+      <div class="lra-desc">LRA motors vibrate linearly at a precise resonant frequency — the same technology as premium smartphones — giving them a distinct, textured feel with dozens of individually selectable effects. ERM motors run continuously, producing a softer, fuzzy ambient buzz rather than a sharp pulse. Norman uses LRAs for precise wave choreography, then layers ERM motors underneath as a continuous ambient tide — two different textures, each doing what it does best, combined into one dual-layer haptic architecture designed specifically for nervous system regulation.</div>
+      <div class="lra-tagline">"Hold Norman and feel exactly what calm means."</div>
+    </div>
+    <div class="lra-right">
+      <div class="lra-stat">
+        <div class="lra-stat-label">LRA motors</div>
+        <div class="lra-stat-value">3 × LRA</div>
+        <div class="lra-stat-note">Upper · center · lower belly · vertically aligned · independently choreographed · mux Ch2/Ch5/Ch7</div>
+      </div>
+      <div class="lra-stat">
+        <div class="lra-stat-label">ERM motors</div>
+        <div class="lra-stat-value">2 × ERM</div>
+        <div class="lra-stat-note">Bundled on single PWM pin · continuous ambient presence · modulated per mode</div>
+      </div>
+      <div class="lra-stat">
+        <div class="lra-stat-label">Driver system</div>
+        <div class="lra-stat-value">DRV2605L × 3</div>
+        <div class="lra-stat-note">One haptic driver per LRA · PCA9548A I2C multiplexer · access to a 123-effect library per channel · triggered mode for overlap</div>
+      </div>
+      <div class="lra-stat">
+        <div class="lra-stat-label">Motor overlap</div>
+        <div class="lra-stat-value">Truly simultaneous</div>
+        <div class="lra-stat-note">DRV2605L chips play autonomously after the mux switches away — M1, M2, and M3 don't just vibrate together, they overlap with different effects, timing, and intensity, each running its own part of the choreography</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOTOR PLACEMENT — SPATIAL -->
+  <div class="motor-section">
+    <div>
+      <div class="motor-eyebrow">Motor Placement · Five Motor System</div>
+      <div class="motor-title">Five motors.<br><em>One body.</em></div>
+      <div class="motor-desc">Three LRA motors run in a vertical line on Norman's belly — and each mode uses the array differently. In Heartbeat, M2 carries the lub-dub while M1 and M3 add soft resonance around it. In Deep Calm, all three ripple up and down together like a cresting, falling wave. In Box Breathing, the array rises in intensity on the inhale and eases back on the exhale, with the ERM pair ramping right alongside it. Two ERM motors flank the belly, layering a continuous ambient presence beneath the LRA choreography in most modes — sometimes steady, sometimes ramping in sync with the wave — while Heartbeat runs LRA alone for a cleaner, more distinct pulse. Together, the two motor types create a combined sensation neither achieves alone.</div>
+    </div>
+    <div class="motor-spatial">
+      <!-- ERM Left -->
+      <div class="motor-col-side">
+        <div class="motor-circle erm">
+          <div class="motor-circle-label erm">ERM</div>
+          <div class="motor-circle-num">1</div>
+        </div>
+        <div class="motor-label-small">ambient<br/>layer</div>
+      </div>
+      <div class="motor-connector-h"></div>
+      <!-- LRA center column -->
+      <div class="motor-col-center">
+        <div class="motor-circle">
+          <div class="motor-circle-label">M1</div>
+          <div class="motor-circle-sub">upper</div>
+        </div>
+        <div class="motor-connector-v"></div>
+        <div class="motor-circle" style="border-color:var(--gold);background:rgba(200,146,14,0.08);">
+          <div class="motor-circle-label">M2</div>
+          <div class="motor-circle-sub">center</div>
+        </div>
+        <div class="motor-connector-v"></div>
+        <div class="motor-circle">
+          <div class="motor-circle-label">M3</div>
+          <div class="motor-circle-sub">lower</div>
+        </div>
+        <div class="motor-label-small" style="margin-top:8px;">LRA wave<br/>array</div>
+      </div>
+      <div class="motor-connector-h"></div>
+      <!-- ERM Right -->
+      <div class="motor-col-side">
+        <div class="motor-circle erm">
+          <div class="motor-circle-label erm">ERM</div>
+          <div class="motor-circle-num">2</div>
+        </div>
+        <div class="motor-label-small">ambient<br/>layer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOUR MODES -->
+  <div class="section-label">Four modes · therapeutic haptic patterns</div>
+  <div class="modes-grid">
+    <div class="mode-card">
+      <div class="mode-icon">🤗</div>
+      <div class="mode-num">01</div>
+      <div class="mode-name">Responsive Hug</div>
+      <div class="mode-desc">Norman responds to your squeeze with continuous vibration that grows stronger the harder you hold — a proportional haptic conversation.</div>
+      <div class="mode-tag" style="background:#7a8c6a;">squeeze to activate · no timer</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-icon">💗</div>
+      <div class="mode-num">02</div>
+      <div class="mode-name">Heartbeat</div>
+      <div class="mode-desc">A real lub-dub heartbeat that gradually slows over 5 minutes — like pressing your ear to someone's chest and feeling their calm.</div>
+      <div class="mode-tag" style="background:#A54D70;">auto-starts · 5 min</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-icon">🌊</div>
+      <div class="mode-num">03</div>
+      <div class="mode-name">Deep Calm</div>
+      <div class="mode-desc">A slow rolling wave travels up and down Norman's belly like ocean waves, with an ambient tide underneath. Fades gently over 10 minutes until silence.</div>
+      <div class="mode-tag" style="background:#43808D;">auto-starts · 10 min</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-icon">🌬️</div>
+      <div class="mode-num">04</div>
+      <div class="mode-name">Box Breathing</div>
+      <div class="mode-desc">Norman physically guides your breath — rising on inhale, silent on hold, falling on exhale, silent on rest. Hold Norman to run, release to pause.</div>
+      <div class="mode-tag" style="background:#675985;">hold FSR to run · pause-resume</div>
+    </div>
+  </div>
+
+  <!-- HARDWARE SPECS -->
+  <div class="section-label">Hardware specifications</div>
+  <div class="specs-grid" style="margin-bottom:24px;">
+    <div class="spec-row">
+      <div class="spec-icon">⚡</div>
+      <div class="spec-label">Microcontroller</div>
+      <div class="spec-value">FireBeetle ESP32-E</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🔊</div>
+      <div class="spec-label">LRA haptic motors</div>
+      <div class="spec-value">3× LRA · M1/M2/M3</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">〰️</div>
+      <div class="spec-label">ERM ambient motors</div>
+      <div class="spec-value">2× ERM · bundled PWM</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🎛️</div>
+      <div class="spec-label">Haptic driver</div>
+      <div class="spec-value">DRV2605L × 3</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🔀</div>
+      <div class="spec-label">I2C multiplexer</div>
+      <div class="spec-value">PCA9548A · Stemma QT</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🤲</div>
+      <div class="spec-label">Squeeze detection</div>
+      <div class="spec-value">FSR · 5-sample rolling average</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🔘</div>
+      <div class="spec-label">Mode selector</div>
+      <div class="spec-value">WS2812B RGB button · color = mode</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🔋</div>
+      <div class="spec-label">Battery</div>
+      <div class="spec-value">18650 · 3,000mAh</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🔌</div>
+      <div class="spec-label">Charging</div>
+      <div class="spec-value">USB-C · flush panel mount</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🛡️</div>
+      <div class="spec-label">Thermal protection</div>
+      <div class="spec-value">Warn 70°C · shutoff 80°C</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">🎵</div>
+      <div class="spec-label">Haptic effects library</div>
+      <div class="spec-value">123 effects · per LRA channel</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-icon">📵</div>
+      <div class="spec-label">Wireless emissions</div>
+      <div class="spec-value">None · WiFi + BT disabled in firmware</div>
+    </div>
+  </div>
+
+  <!-- COMPETITOR COMPARISON -->
+  <div class="section-label">Why Norman is different</div>
+  <div style="background:var(--brown-dark);border-radius:12px;overflow:hidden;margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="padding:12px 20px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;">Feature</div>
+      <div style="padding:12px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;border-left:1px solid rgba(255,255,255,0.06);">Weighted Animals</div>
+      <div style="padding:12px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:700;border-left:1px solid rgba(255,255,255,0.06);">Apollo Neuro</div>
+      <div style="padding:12px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);font-weight:700;border-left:1px solid rgba(255,255,255,0.06);">Norman</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Weighted comfort</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:#A6C68F;font-size:13px;">✓</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Therapeutic haptic vibration</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:#A6C68F;font-size:13px;">✓</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Multiple therapeutic modes</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:#A6C68F;font-size:13px;">✓</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Squeeze responsive</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Multi-motor wave choreography</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">No wireless emissions</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:#A6C68F;font-size:13px;">✓</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">Dual-motor-type layered sensation</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;">✓</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;">
+      <div style="padding:10px 20px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.88);">A personality</div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:rgba(255,255,255,0.5);font-size:13px;">—</span></div>
+      <div style="padding:10px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.04);"><span style="color:var(--gold-light);font-size:13px;font-family:'Cormorant Garamond',serif;font-style:italic;">Norman.</span></div>
+    </div>
+  </div>
+
+  <!-- WHO IS IT FOR -->
+  <div class="for-who">
+    <div class="for-who-label">Norman is designed for</div>
+    <div style="grid-column:span 2;font-size:15px;font-weight:300;color:rgba(255,255,255,0.85);line-height:1.6;margin-top:0;margin-bottom:12px;">Norman's benefit isn't haptics alone — it's three evidence-based mechanisms working together: deep pressure stimulation, therapeutic haptic vibration, and co-regulation through touch.</div>
+    <div class="for-who-list">
+      <div class="for-who-item"><span class="for-who-dot"></span>Therapists and occupational therapy practices seeking clinical-grade haptic tools for nervous system regulation</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Schools and pediatric clinics where haptic quality directly impacts therapeutic outcomes</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Dental offices — a calming companion for patients anxious in the chair during procedures</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Veterinary clinics — for pet owners facing stressful moments: emergency visits, difficult diagnoses, or end-of-life decisions</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Hospitals and doctors' offices — deep pressure, vibration, and touch together to ease anxiety before infusions, scans, or procedures</div>
+    </div>
+    <div class="for-who-list">
+      <div class="for-who-item"><span class="for-who-dot"></span>Children with heightened sensory sensitivity who benefit from gentle, intentional haptic input</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Adults managing anxiety, PTSD, or sensory processing differences</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Neurodiverse individuals who benefit from precise, predictable tactile grounding</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Classrooms — Norman is child-safe, school-ready, and requires no app or screen</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>Gifting — a meaningful, explainable therapeutic object</div>
+      <div class="for-who-item"><span class="for-who-dot"></span>HSA/FSA reimbursement as a therapeutic haptic device</div>
+    </div>
+  </div>
+
+  <!-- HSA -->
+  <div class="hsa">
+    <div>
+      <div class="hsa-label">HSA / FSA Eligible</div>
+      <div class="hsa-text">Use your health savings account to purchase Norman. As a therapeutic haptic device designed for anxiety, sensory processing, and emotional regulation, Norman qualifies for HSA/FSA reimbursement in most plans.</div>
+    </div>
+    <div>
+      <div class="hsa-amount">Save up to 30%</div>
+      <div class="hsa-amount-note">HSA/FSA eligible<br/>qualifications apply</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">CalmCompanion™</div>
+      <div class="footer-tagline">Calm, by Design™</div>
+    </div>
+    <div class="footer-meta">
+      yourcalmcompanion.com · Patent Pending · Phase 3.0<br/>
+      Norman · $319 · Coming Soon
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
