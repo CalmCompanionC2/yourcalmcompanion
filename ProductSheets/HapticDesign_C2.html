@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalmCompanion™ Norman C2 — Haptic Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+@media print {
+  @page { size: letter; margin: 0.4in; }
+  body { padding: 0; }
+  .mode-card, .principle-card, .wiring-card, .bom-card { break-inside: avoid; page-break-inside: avoid; }
+}
+:root {
+  --gold: #C8920E;
+  --navy: #1A3A6B;
+  --cream: #FAF6EE;
+  --brown: #2A1A08;
+  --muted: #8B7355;
+  --light: #E8C898;
+  --tan: #EDE5D8;
+  --warm: #F5F0E8;
+  --green: #2a6e2a;
+  --red: #8B2020;
+  --purple: #5a2a7a;
+  --blue: #1a3a6e;
+  --orange: #c86400;
+}
+body {
+  background: var(--tan);
+  font-family: 'Jost', sans-serif;
+  color: var(--brown);
+  padding: 0;
+}
+.doc-header {
+  background: linear-gradient(160deg,#0a1f42 0%,#1A3A6B 60%,#2a5098 100%);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 52px;
+  max-width: 1100px;
+  margin: 40px auto 32px;
+}
+.doc-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(200,146,14,0.1), transparent);
+  pointer-events: none;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,146,14,0.06), transparent 70%);
+  pointer-events: none;
+}
+.tartan {
+  height: 8px;
+  border-radius: 2px;
+  margin: 0 auto;
+  max-width: 1100px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--navy) 0px, var(--navy) 16px,
+    var(--gold) 16px, var(--gold) 20px,
+    var(--navy) 20px, var(--navy) 36px,
+    #8B2020 36px, #8B2020 40px,
+    var(--navy) 40px, var(--navy) 56px,
+    var(--gold) 56px, var(--gold) 60px,
+    var(--navy) 60px, var(--navy) 76px
+  );
+}
+.header-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+.header-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(220,170,60,1.0);
+  margin-bottom: 16px;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.header-title em {
+  font-style: italic;
+  color: var(--light);
+}
+.header-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(220,170,60,1.0);
+  margin-top: 16px;
+  border-top: 1px solid rgba(200,146,14,0.2);
+  padding-top: 16px;
+  max-width: 420px;
+}
+.header-meta {
+  position: relative;
+  z-index: 1;
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.85);
+  line-height: 2.2;
+  letter-spacing: 0.5px;
+}
+.header-meta strong {
+  color: rgba(220,170,60,1.0);
+  display: block;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 60px 60px;
+}
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: #D4C8B0; }
+.motor-section {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+  align-items: start;
+}
+.motor-diagram {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.motor-diagram::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px);
+}
+.motor-diagram-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(240,210,160,1.0);
+  margin-bottom: 20px;
+  position: relative;
+}
+.motor-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 10px 0;
+}
+.motor-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+.motor-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.motor-circle-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.motor-circle-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 6px;
+  color: rgba(240,210,160,0.95);
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+.motor-info { flex: 1; }
+.motor-info-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  color: var(--cream);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.motor-info-pos {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  color: rgba(240,210,160,0.95);
+  letter-spacing: 0.5px;
+}
+.motor-connector {
+  width: 2px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--gold), rgba(200,146,14,0.3));
+  margin-left: 25px;
+  opacity: 0.85;
+}
+.bom-card {
+  background: #fff;
+  border: 1.5px solid var(--brown);
+  overflow: hidden;
+  min-width: 0;
+}
+.bom-header {
+  background: var(--brown);
+  padding: 10px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--light);
+}
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+.bom-table th {
+  padding: 8px 12px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--tan);
+  background: var(--warm);
+}
+.bom-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #F0E8D8;
+  vertical-align: middle;
+  color: var(--brown);
+  line-height: 1.4;
+}
+.bom-table tr:last-child td { border-bottom: none; }
+.bom-table td:first-child { font-weight: 500; min-width: 30px; color: var(--gold); font-family: 'DM Mono', monospace; font-size: 12px; text-align: center; }
+.wiring-card {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.wiring-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px);
+}
+.wiring-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.wiring-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wiring-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,146,14,0.2);
+  border-radius: 6px;
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 100px;
+}
+.wiring-box-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 3px;
+  letter-spacing: 0.5px;
+}
+.wiring-box-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 8px;
+  color: rgba(240,210,160,0.9);
+  line-height: 1.4;
+}
+.wiring-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+}
+.wiring-arrow-line {
+  width: 40px;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(200,146,14,0.3), var(--gold), rgba(200,146,14,0.3));
+}
+.wiring-arrow-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  color: rgba(200,146,14,0.8);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.wiring-channel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wiring-channel-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  color: rgba(200,146,14,0.85);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  min-width: 40px;
+}
+.wiring-channel-line {
+  width: 24px;
+  height: 1.5px;
+  background: rgba(200,146,14,0.3);
+}
+.modes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.mode-card {
+  background: #fff;
+  border: 1.5px solid var(--brown);
+  overflow: hidden;
+}
+.mode-card-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--tan);
+}
+.mode-color-bar {
+  width: 5px;
+  height: 40px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.mode-emoji { font-size: 22px; }
+.mode-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1;
+  min-width: 28px;
+}
+.mode-title-block { flex: 1; }
+.mode-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--brown);
+  line-height: 1;
+}
+.mode-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.mode-card-body { padding: 16px 20px; }
+.mode-concept {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--tan);
+}
+.choreo { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.choreo-step { display: flex; gap: 10px; align-items: flex-start; }
+.choreo-motor { display: flex; gap: 4px; flex-shrink: 0; margin-top: 2px; }
+.motor-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  font-weight: 500;
+}
+.choreo-detail { flex: 1; }
+.choreo-action {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  color: var(--brown);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.choreo-timing {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.effects-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--tan); }
+.effects-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.effects-list { display: flex; flex-direction: column; gap: 4px; }
+.effects-also { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); margin-top: 8px; line-height: 1.6; letter-spacing: 0.3px; }
+.effect-item { display: flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 9px; }
+.effect-num { font-size: 10px; color: var(--gold); min-width: 28px; }
+.effect-name { color: var(--brown); }
+.effect-use { color: var(--muted); margin-left: auto; font-size: 8px; }
+.feel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-top: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--light);
+  line-height: 1.4;
+}
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.principle-card {
+  background: #fff;
+  border: 1.5px solid var(--brown);
+  padding: 18px 16px;
+}
+.principle-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+.principle-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 6px;
+}
+.principle-desc {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.next-steps {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.next-steps::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 18px, rgba(200,146,14,0.03) 18px, rgba(200,146,14,0.03) 20px);
+}
+.next-steps-inner { position: relative; }
+.next-steps-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.next-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.next-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  color: rgba(240,210,160,0.95);
+  line-height: 1.5;
+}
+.step-box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(200,146,14,0.4);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.doc-footer {
+  border-top: 1px solid var(--border, rgba(200,146,14,0.15));
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--brown);
+}
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.footer-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+<div class="tartan"></div>
+<div class="doc-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-eyebrow">CalmCompanion™ · Patent Documentation · Confidential</div>
+      <div class="header-title">Norman C2 —<br><em>Haptic Design</em></div>
+      <div class="header-tagline">Choreographed vibration · 3× LRA + 2× ERM · DRV2605L · PCA9548A multiplexer</div>
+    </div>
+    <div class="header-meta">
+      <strong>CC-NRM-003 · Draft v2.0</strong>
+      Inventor: Suzanne Tocco<br>
+      August 2026 · Confidential<br>
+      Norman C2 · PCA9548A Stemma QT · M1=Ch2 · M2=Ch5 · M3=Ch7<br>
+      ERM1+ERM2 bundled → D12/GPIO4
+    </div>
+  </div>
+</div>
+<div class="page">
+
+  <div class="section-label">Fig. 1 — Motor Configuration</div>
+  <div class="motor-section">
+    <div class="motor-diagram">
+      <div class="motor-diagram-title">Belly placement · vertical line</div>
+      <div class="motor-visual">
+        <div class="motor-node">
+          <div class="motor-circle" style="border-color:rgba(200,146,14,0.9);background:rgba(200,146,14,0.08);">
+            <div class="motor-circle-label">M1</div>
+            <div class="motor-circle-sub">upper</div>
+          </div>
+          <div class="motor-info">
+            <div class="motor-info-name">Motor 1 — Upper Belly</div>
+            <div class="motor-info-pos">LRA · DRV2605L · mux Ch2</div>
+          </div>
+        </div>
+        <div class="motor-connector"></div>
+        <div class="motor-node">
+          <div class="motor-circle" style="border-color:var(--gold);background:rgba(200,146,14,0.12);">
+            <div class="motor-circle-label">M2</div>
+            <div class="motor-circle-sub">center</div>
+          </div>
+          <div class="motor-info">
+            <div class="motor-info-name">Motor 2 — Center Belly</div>
+            <div class="motor-info-pos">LRA · DRV2605L · mux Ch5 · FSR location</div>
+          </div>
+        </div>
+        <div class="motor-connector"></div>
+        <div class="motor-node">
+          <div class="motor-circle" style="border-color:rgba(200,146,14,0.9);background:rgba(200,146,14,0.08);">
+            <div class="motor-circle-label">M3</div>
+            <div class="motor-circle-sub">lower</div>
+          </div>
+          <div class="motor-info">
+            <div class="motor-info-name">Motor 3 — Lower Belly</div>
+            <div class="motor-info-pos">LRA · DRV2605L · mux Ch7</div>
+          </div>
+        </div>
+        <div class="motor-connector" style="background:linear-gradient(to bottom,rgba(200,146,14,0.4),rgba(200,146,14,0.1));"></div>
+        <div class="motor-node">
+          <div class="motor-circle" style="border-color:rgba(200,146,14,0.5);background:rgba(200,146,14,0.05);">
+            <div class="motor-circle-label" style="font-size:8px;">ERM</div>
+            <div class="motor-circle-sub">1+2</div>
+          </div>
+          <div class="motor-info">
+            <div class="motor-info-name">ERM1 + ERM2 — Bundled</div>
+            <div class="motor-info-pos">Both wired to D12/GPIO4 · direct PWM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bom-card">
+      <div class="bom-header">Bill of Materials — Norman C2</div>
+      <table class="bom-table">
+        <thead>
+          <tr>
+            <th>Qty</th>
+            <th>Component</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>FireBeetle ESP32-E</td><td>DFRobot · headers pre-soldered · partition: Huge APP 3MB</td></tr>
+          <tr><td>1</td><td>18650 Battery</td><td>3.7V in holder · JST PH 2.0 → FireBeetle JST port</td></tr>
+          <tr><td>2</td><td>JST PH 2.0 Pigtails</td><td>1 female (battery-side) + 1 male (FireBeetle-side) · spliced together mid-wire, red only, for the battery-sense tap</td></tr>
+          <tr><td>1</td><td>Resistor 68kΩ</td><td>Battery voltage-sense divider · leg 1 → splice point · leg 2 → GPIO36 junction · 1/4W · soldered, confirmed working</td></tr>
+          <tr><td>1</td><td>Resistor 100kΩ</td><td>Battery voltage-sense divider · leg 1 → GPIO36 junction · leg 2 → existing GND rail · 1/4W · soldered, confirmed working</td></tr>
+          <tr><td>1</td><td>Capacitor 100nF</td><td>Optional filtering cap across the divider's GPIO36 tap · on hand, not yet confirmed necessary</td></tr>
+          <tr><td>1</td><td>USB-C Panel Mount</td><td>Flush mount male-to-female extension · installed in Norman enclosure</td></tr>
+          <tr><td>1</td><td>WS2812B RGB Button</td><td>19mm · D3/GPIO26 DIN · VCC direct · GND rail</td></tr>
+          <tr><td>1</td><td>FSR Sensor</td><td>Ransanx RP-S40-ST · A4/GPIO15 · 1kΩ pull-up to 3V3 · ~4095 at rest</td></tr>
+          <tr><td>3</td><td>LRA Motors</td><td>LRA-ZA-1040 · 10x4mm · 2V AC · 185Hz · mux Ch2/Ch5/Ch7</td></tr>
+          <tr><td>2</td><td>ERM Motors</td><td>Coin ERMs · IN wires bundled → D12/GPIO4 · VCC/GND on perfboard rails</td></tr>
+          <tr><td>3</td><td>DRV2605L Haptic Board</td><td>Adafruit #2305 · Stemma QT · I2C addr 0x5A · triggered mode</td></tr>
+          <tr><td>1</td><td>PCA9548A Multiplexer</td><td>Adafruit Stemma QT · 8-ch I2C · addr 0x70 · solder-jumper pads on rear</td></tr>
+          <tr><td>1</td><td>Perfboard</td><td>3 rails: GND (~7 holes) · 3V3 (~5 holes) · FSR junction (isolated) · 4–5 hole spacing</td></tr>
+          <tr><td>1</td><td>Resistor 1kΩ</td><td>FSR voltage divider · leg 1 → 3V3 rail · leg 2 → FSR junction row</td></tr>
+          <tr><td>1</td><td>Enclosure</td><td>Highland Cow stuffed animal · Norman</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-label">Fig. 2 — I2C Wiring Chain</div>
+  <div class="wiring-card" style="margin-bottom:32px;">
+    <div class="wiring-inner" style="position:relative;gap:0;">
+      <div class="wiring-node">
+        <div class="wiring-box" style="border-color:rgba(200,146,14,0.4);">
+          <div class="wiring-box-title">FireBeetle</div>
+          <div class="wiring-box-sub">ESP32-E<br>SDA GPIO21<br>SCL GPIO22<br>ERM D12/GPIO4</div>
+        </div>
+      </div>
+      <div class="wiring-arrow">
+        <div class="wiring-arrow-line"></div>
+        <div class="wiring-arrow-label">I2C + Stemma QT</div>
+      </div>
+      <div class="wiring-node">
+        <div class="wiring-box" style="border-color:rgba(200,146,14,0.6);background:rgba(200,146,14,0.06);">
+          <div class="wiring-box-title">PCA9548A</div>
+          <div class="wiring-box-sub">I2C Multiplexer<br>8 channels<br>addr 0x70<br>Stemma QT</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 12px;">
+        <div class="wiring-channel"><div class="wiring-channel-label">Ch 2 →</div><div class="wiring-channel-line"></div></div>
+        <div class="wiring-channel"><div class="wiring-channel-label">Ch 5 →</div><div class="wiring-channel-line"></div></div>
+        <div class="wiring-channel"><div class="wiring-channel-label">Ch 7 →</div><div class="wiring-channel-line"></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="wiring-box" style="min-width:120px;">
+          <div class="wiring-box-title">DRV2605L #1</div>
+          <div class="wiring-box-sub">addr 0x5A → M1 Upper</div>
+        </div>
+        <div class="wiring-box" style="min-width:120px;border-color:rgba(200,146,14,0.5);background:rgba(200,146,14,0.04);">
+          <div class="wiring-box-title">DRV2605L #2</div>
+          <div class="wiring-box-sub">addr 0x5A → M2 Center</div>
+        </div>
+        <div class="wiring-box" style="min-width:120px;">
+          <div class="wiring-box-title">DRV2605L #3</div>
+          <div class="wiring-box-sub">addr 0x5A → M3 Lower</div>
+        </div>
+      </div>
+      <div class="wiring-arrow">
+        <div class="wiring-arrow-line"></div>
+        <div class="wiring-arrow-label">LRA</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="wiring-box" style="min-width:100px;border-color:rgba(200,146,14,0.3);">
+          <div class="wiring-box-title" style="color:rgba(220,170,60,1.0);">M1 LRA</div>
+          <div class="wiring-box-sub">Upper belly</div>
+        </div>
+        <div class="wiring-box" style="min-width:100px;border-color:var(--gold);background:rgba(200,146,14,0.06);">
+          <div class="wiring-box-title">M2 LRA</div>
+          <div class="wiring-box-sub">Center · FSR</div>
+        </div>
+        <div class="wiring-box" style="min-width:100px;border-color:rgba(200,146,14,0.3);">
+          <div class="wiring-box-title" style="color:rgba(220,170,60,1.0);">M3 LRA</div>
+          <div class="wiring-box-sub">Lower belly</div>
+        </div>
+      </div>
+      <div class="wiring-arrow">
+        <div class="wiring-arrow-line"></div>
+        <div class="wiring-arrow-label">PWM</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="wiring-box" style="min-width:100px;border-color:rgba(200,146,14,0.3);">
+          <div class="wiring-box-title" style="color:rgba(220,170,60,0.8);">ERM1+ERM2</div>
+          <div class="wiring-box-sub">Bundled · D12/GPIO4<br>direct PWM · no MOSFET</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Fig. 3 — Haptic Choreography · Four Modes</div>
+  <div class="modes-grid">
+
+    <!-- STARTUP -->
+    <div class="mode-card" style="grid-column:1 / -1;">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:var(--green);"></div>
+        <div class="mode-emoji">✨</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Startup — Wake + Settle</div>
+          <div class="mode-subtitle">plays once on power-on, before entering whichever mode is selected · 1.7s total · LED: green throughout, continuing the same green breathing glow already shown during the preceding button hold (a brief ~450ms dark pause bridges the two)</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">A rising wave through the body, bottom to top, landing as one unified pulse — then a three-stage ERM ramp that continues past the LRA sequence to accommodate the motor's physical spin-up time.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M3</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M2</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M1</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">M3 → M2 → M1 — rising wave</div>
+              <div class="choreo-timing">M3 at 0ms (clamp 55) · M2 at 180ms (clamp 59) · M1 at 360ms (clamp 64) — builds upward through the body</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M1</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M2</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">All three together — landing</div>
+              <div class="choreo-timing">680–760ms · all at clamp 54 — the wave arrives and settles as one</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:#888;color:#888;">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">ERM — three-stage ramp</div>
+              <div class="choreo-timing">0–200ms rising (140) · 200–900ms peak (235) · 900–1700ms easing to 100 — extends past the LRA sequence to give the motor time to physically spin up</div>
+            </div>
+          </div>
+        </div>
+        <div class="feel-badge">A wave rising through the body, arriving as one — the button glows green throughout, then settles into whichever mode follows</div>
+      </div>
+    </div>
+
+    <!-- MODE 1 -->
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:var(--green);"></div>
+        <div class="mode-emoji">🤗</div>
+        <div class="mode-number">01</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Responsive Hug</div>
+          <div class="mode-subtitle">FSR squeeze · ERM-only by default · no timer · LED: green</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">Norman responds to your squeeze with continuous ERM vibration proportional to pressure — the harder you hold, the stronger the response. Boots in ERM-only mode by default; three alternate LRA-layered styles exist and are live-switchable for testing, not shipped as the default feel.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:#888;color:#888;">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">ERMs — continuous, proportional to squeeze pressure</div>
+              <div class="choreo-timing">PWM 160–255 · scales linearly between light (FSR 4090) and firm (FSR 3700) touch</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--muted);color:var(--muted);">—</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">LRA — silent in the default style</div>
+              <div class="choreo-timing">3 alternate styles live-switchable via serial: background hum, continuous RTP hum, full hybrid burst layered on the ERM response</div>
+            </div>
+          </div>
+        </div>
+        <div class="effects-section">
+          <div class="effects-label">DRV2605L effects — current build</div>
+          <div class="effects-list">
+            <div class="effect-item"><span class="effect-num">#121</span><span class="effect-name">Smooth Hum 3</span><span class="effect-use">background-style option · fixed low clamp 25</span></div>
+          </div>
+          <div class="effects-also">FSR thresholds: hand present &lt;4090 · silence &gt;4093 · firm touch at 3700 · ERM 160–255 · hybrid-style LRA intensity 65–112 · 5-sample rolling average</div>
+        </div>
+        <div class="feel-badge">Pure pressure-responsive ERM rumble by default · proportional, immediate, alive</div>
+      </div>
+    </div>
+
+    <!-- MODE 2 -->
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:var(--red);"></div>
+        <div class="mode-emoji">💗</div>
+        <div class="mode-number">02</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Heartbeat</div>
+          <div class="mode-subtitle">auto-starts · 5 min · 40→33 BPM ease · LRA + ERM · LED: red</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">A real lub-dub heartbeat that gradually slows over 5 minutes. Now genuinely dual-motor — the ERM ramps down in sync with the tempo, going fully silent right as the heartbeat reaches its slowest point.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--red);color:var(--red);">M2</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">LUB — center fires strong (the main beat)</div>
+              <div class="choreo-timing">effect #1 · clamp 112</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--muted);color:var(--muted);">M1</div>
+              <div class="motor-dot" style="border-color:var(--muted);color:var(--muted);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">Resonance — upper + lower echo softer, overlapping M2</div>
+              <div class="choreo-timing">effect #7 · clamp ~45 (40% of base)</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--red);color:var(--red);opacity:0.6;">M2</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">DUB — center fires medium</div>
+              <div class="choreo-timing">effect #4 · clamp ~78 (70% of base)</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--muted);color:var(--muted);opacity:0.4;">M1</div>
+              <div class="motor-dot" style="border-color:var(--muted);color:var(--muted);opacity:0.4;">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">Dub resonance — very soft echo</div>
+              <div class="choreo-timing">effect #7 · clamp ~22 (20% of base) · each beat's period locked at the start of that beat, not recomputed mid-beat</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">ERM — ramps down in sync with tempo slowdown</div>
+              <div class="choreo-timing">185 → 0 · flat 40 BPM until 2:30, then eases to 33 BPM by 5:00 · ERM silent by the time tempo bottoms out</div>
+            </div>
+          </div>
+        </div>
+        <div class="effects-section">
+          <div class="effects-label">DRV2605L effects — current build</div>
+          <div class="effects-list">
+            <div class="effect-item"><span class="effect-num">#1</span><span class="effect-name">Strong Click</span><span class="effect-use">LUB on M2</span></div>
+            <div class="effect-item"><span class="effect-num">#4</span><span class="effect-name">Sharp Click</span><span class="effect-use">DUB on M2</span></div>
+            <div class="effect-item"><span class="effect-num">#7</span><span class="effect-name">Soft Bump</span><span class="effect-use">Resonance M1+M3, both LUB and DUB echoes</span></div>
+          </div>
+          <div class="effects-also">Base clamp (112) deliberately decoupled from the shared LRA overdrive constant, so calibration/Mode 1 tuning elsewhere never silently rescales Heartbeat</div>
+        </div>
+        <div class="feel-badge">Thump → tick, resonance through the body, ERM warmth underneath — all fading together as it slows toward rest</div>
+      </div>
+    </div>
+
+    <!-- MODE 3 -->
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:var(--purple);"></div>
+        <div class="mode-emoji">🌊</div>
+        <div class="mode-number">03</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Deep Calm</div>
+          <div class="mode-subtitle">auto-starts · 10 min · fades at 9 min · LOCKED FINAL — PMR · LED: purple</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">Built from calming-haptics research rather than a spatial-wave metaphor — after six engines and several weeks chasing a traveling-wave concept that never quite landed, this steps back to the simplest validated mechanism available: Progressive Muscle Relaxation's asymmetric tension-then-longer-release shape, translated into a haptic sequence — a quick rise, a brief hold, then a release nearly twice as long as the build. ERM carries the entire primary sensation, with a rare, soft LRA touch as reinforcement, not a second rhythm.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:#888;color:#888;">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">ERM — quick rise, brief hold, then a much longer release</div>
+              <div class="choreo-timing">PWM 235–255 · 6s rise · 0.8s hold · 11s fall (nearly 2× the rise) · 1.5s genuine silence before the next cycle</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M1</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M2</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">LRA touch — all three together, one soft touch per cycle</div>
+              <div class="choreo-timing">Soft Bump effect · clamp 75 · flat 55% chance per cycle · lands during the hold</div>
+            </div>
+          </div>
+        </div>
+        <div class="effects-section">
+          <div class="effects-label">DRV2605L effects — locked</div>
+          <div class="effects-list">
+            <div class="effect-item"><span class="effect-num">#7</span><span class="effect-name">Soft Bump</span><span class="effect-use">The occasional LRA touch, all 3 motors together</span></div>
+          </div>
+          <div class="effects-also">Grounded in decades of clinical relaxation research since Jacobson's original 1930s work — brief tension followed by a markedly longer release produces greater relaxation than release alone, replicated repeatedly in anxiety, insomnia, and stress literature. Five other engines were built and tested first (fixed 0.1Hz rate, moving pressure band, tide+ripple, ERM-only continuous presence, sparse irregular touches, and a symmetric decelerating swell) — all removed once this one was confirmed as the strongest candidate.</div>
+        </div>
+        <div class="feel-badge">A quick build, a brief hold, then a slow release nearly twice as long — like a held breath finally let go.</div>
+      </div>
+    </div>
+
+    <!-- MODE 4 -->
+    <div class="mode-card">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:var(--blue);"></div>
+        <div class="mode-emoji">🌬️</div>
+        <div class="mode-number">04</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Box Breathing</div>
+          <div class="mode-subtitle">FSR hold to run · resumes within 2s, restarts after · LOCKED FINAL · LED: blue</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">ERM ramps with the breath itself — rising on inhale, falling on exhale. LRA is the opposite: completely silent during inhale/exhale so nothing competes with the breathing rhythm, then a literal one-click-per-second metronome on all three motors together during both holds — the exact reverse of an earlier draft.</div>
+        <div style="font-size:11px;font-style:italic;color:var(--muted);margin-top:8px;">Releasing the FSR pauses the sequence. Re-engaging within about 2 seconds resumes from the preserved phase position; a longer pause instead restarts fresh at the next inhale, giving a returning user a clear, predictable starting point rather than needing to guess where they left off.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">INHALE (5.2s) — ERMs ramp 160→255, LRA silent</div>
+              <div class="choreo-timing">linear PWM ramp · full duration</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M1</div>
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M2</div>
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">HOLD (exactly 4s) — all 3 motors click together, once per second</div>
+              <div class="choreo-timing">effect #1 · clamp 55 · first click delayed 350ms after the hold begins (breathing room right after inhale/exhale ends) · clicks land at ~350/1350/2350/3350ms, all 4 comfortably clear of the boundary</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">EXHALE (4.7s) — ERMs ramp 255→160, LRA silent</div>
+              <div class="choreo-timing">linear PWM ramp · full duration</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M1</div>
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M2</div>
+              <div class="motor-dot" style="border-color:var(--blue);color:var(--blue);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">HOLD (exactly 4s) — same metronome pattern, then repeat</div>
+              <div class="choreo-timing">identical to the first hold · fully symmetric</div>
+            </div>
+          </div>
+        </div>
+        <div class="effects-section">
+          <div class="effects-label">DRV2605L effects — locked final</div>
+          <div class="effects-list">
+            <div class="effect-item"><span class="effect-num">#1</span><span class="effect-name">Strong Click</span><span class="effect-use">All 3 motors together · once per second during both holds</span></div>
+          </div>
+          <div class="effects-also">300ms release-debounce so sensor jitter mid-session doesn't drop the practice · click timing is deliberately tuned to stay clear of the phase boundary, so all 4 clicks per hold fire reliably every time</div>
+        </div>
+        <div class="feel-badge">Breath ramps continuously via ERM · holds are marked by a literal, countable tactile metronome</div>
+      </div>
+    </div>
+
+    <!-- POWER-DOWN -->
+    <div class="mode-card" style="grid-column:1 / -1;">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:linear-gradient(90deg, var(--blue), #000);"></div>
+        <div class="mode-emoji">🌙</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Power-down — Settling Descent</div>
+          <div class="mode-subtitle">plays once on power-off, reversed from startup · 1.5s total · LED: stays dark throughout — the actual power-off signal (a red breathing glow) already happened during the preceding button hold, not here</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">The mirror image of startup — a falling wave through the body, top to bottom, as the ERM presence fades toward near-silence. The LED itself stays dark throughout this sequence — its part of the signal, a red breathing glow, already happened during the button hold that triggered this.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor">
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M1</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M2</div>
+              <div class="motor-dot" style="border-color:var(--purple);color:var(--purple);">M3</div>
+            </div>
+            <div class="choreo-detail">
+              <div class="choreo-action">M1 → M2 → M3 — falling wave (reversed)</div>
+              <div class="choreo-timing">M1 at 0ms (clamp 95) · M2 at 220ms (clamp 105) · M3 at 440ms (clamp 120) — mirrors startup, top-to-bottom instead of bottom-to-top</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:#888;color:#888;">E</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">ERM — three-stage fade</div>
+              <div class="choreo-timing">0–600ms at 200 · 600–1100ms easing to 100 · 1100–1500ms fading to 30 — settles to near-silence, with the LED already dark throughout this span</div>
+            </div>
+          </div>
+        </div>
+        <div class="feel-badge">A wave falling through the body in silence and darkness — the reverse of arriving, settling into quiet rather than off</div>
+      </div>
+    </div>
+
+    <!-- BATTERY STATUS INDICATORS -->
+    <div class="mode-card" style="grid-column:1 / -1;">
+      <div class="mode-card-header">
+        <div class="mode-color-bar" style="background:linear-gradient(90deg, var(--red), #C8920E);"></div>
+        <div class="mode-emoji">🔋</div>
+        <div class="mode-title-block">
+          <div class="mode-title">Battery Status Indicators</div>
+          <div class="mode-subtitle">LED-only — no haptic choreography, can occur independent of mode or power state</div>
+        </div>
+      </div>
+      <div class="mode-card-body">
+        <div class="mode-concept">Two distinct pulsing states, both overriding whatever color the button would otherwise show.</div>
+        <div class="choreo">
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:var(--red);color:var(--red);">●</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">Charging — red pulse</div>
+              <div class="choreo-timing">Confirmed while actively charging, ~60-90s to detect · clears cleanly on unplug or once fully charged</div>
+            </div>
+          </div>
+          <div class="choreo-step">
+            <div class="choreo-motor"><div class="motor-dot" style="border-color:#C8920E;color:#C8920E;">●</div></div>
+            <div class="choreo-detail">
+              <div class="choreo-action">Low battery — gold pulse</div>
+              <div class="choreo-timing">Off-only · shares the same underlying detection system as charging</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Design Principles</div>
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="principle-number">01</div>
+      <div class="principle-title">Single motor rarely reads as felt</div>
+      <div class="principle-desc">Confirmed repeatedly on real hardware: a single motor firing alone — even at high intensity — often doesn't register. Multi-motor, simultaneous firing is what consistently reads as felt and distinct.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">02</div>
+      <div class="principle-title">Built for felt precision, not just presence</div>
+      <div class="principle-desc">Each motor has a distinct role — anchor, accent, ambient — not just a position. The vertical spacing and dual motor types exist to let each mode choose exactly how a sensation should feel, whether that's today's center-anchored reinforcement or a directional traveling wave in a mode not yet built.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">03</div>
+      <div class="principle-title">Silence is part of the design</div>
+      <div class="principle-desc">Gaps between patterns are intentional therapeutic pauses. The absence of vibration is as meaningful as the vibration itself.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">04</div>
+      <div class="principle-title">ERM + LRA layers</div>
+      <div class="principle-desc">ERMs provide consistent ambient presence through stuffing. LRAs add directionality and texture on top. Together they create sensations neither motor type achieves alone.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">05</div>
+      <div class="principle-title">Overlap is intentional</div>
+      <div class="principle-desc">DRV2605L chips play effects autonomously after the mux switches away — true simultaneous motor overlap is achievable in triggered mode without holding the channel.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">06</div>
+      <div class="principle-title">Feel IS the product</div>
+      <div class="principle-desc">The haptic sensation is the therapeutic intervention. Every tuning decision — timing, intensity, effect choice — directly affects nervous system response.</div>
+    </div>
+  </div>
+
+
+  <div class="doc-footer">
+    <div>
+      <div class="footer-brand">CalmCompanion™</div>
+      <div class="footer-tagline">Calm, by Design™</div>
+    </div>
+    <div class="footer-meta">
+      Norman C2 · Haptic Design · CC-NRM-003 · v2.0<br>
+      © 2026 Suzanne Tocco · All Rights Reserved · Confidential Patent Documentation
+    </div>
+  </div>
+</div>
+</body>
+</html>
