@@ -649,3 +649,9 @@ body { margin: 0; background: var(--cc-cream); }
 @media (max-width: 980px) {
   .sec[style*="min-height"] { min-height: 0 !important; }
 }
+
+/* Home hero: give the headline room so "Calm, by design." stays on one line */
+@media (min-width: 1000px) {
+  .hero-split { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+  .hero-split .h1 { white-space: nowrap; font-size: clamp(56px, 6.4vw, 92px); }
+}
