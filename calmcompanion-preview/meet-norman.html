@@ -32,13 +32,13 @@
 
 
 <!-- HERO -->
-<section class="sec" style="padding-block: clamp(48px, 7vw, 96px)">
+<section class="sec" style="padding-block: clamp(48px, 7vw, 96px); padding-bottom: clamp(20px, 3vw, 40px)">
   <div class="wrap split">
     <div class="stack">
       <p class="eyebrow">Meet Norman</p>
       <h1 class="h1">Soft to hold.<br><span class="i">Steady to follow.</span></h1>
       <hr class="rule-short">
-      <p class="lede">Norman is a big, soft, chunky Highland cow. Hold him against your chest and he already feels soothing, before you press a single button. Then add soothing haptic vibration when you want a little more. Be ready to share him: everyone who meets him wants a turn.</p>
+      <p class="lede">Norman is a big, soft, weighted Highland cow, and holding him is only the start. He has four modes: he answers your hug, keeps a heartbeat that slows, rolls through a long wave of tension and release, or paces your breath. Each is built on the science of how the body and mind settle.</p>
       <p style="margin-top:30px"><a class="btn btn-navy" href="#modes">See how he moves</a> &nbsp; <a class="btn btn-ghost" href="#waitlist">Join the waitlist</a></p>
     </div>
     <div>
@@ -49,11 +49,11 @@
 </section>
 
 <!-- MODES -->
-<section class="sec bg-warm" id="modes">
+<section class="sec bg-warm" id="modes" style="padding-top: clamp(28px, 4vw, 52px)">
   <div class="wrap">
     <p class="eyebrow">Four modes</p>
     <h2 class="h2">Pick one. <span class="i">Watch him move.</span></h2>
-    <p class="lede" style="margin:18px 0 32px">Norman has five small motors inside: three precise ones and two soft, ambient ones. They work together in different combinations, layering and overlapping to give the vibration depth.</p>
+    <p class="lede" style="margin:18px 0 32px">Norman has five small motors inside. Three are precise, giving the crisp beats and taps, like a heartbeat or the count of a breath. Two are soft and ambient, adding a low hum that swells and fades. Each mode uses them in its own combination.</p>
     <div class="tabs" role="tablist" aria-label="Norman's modes">
       <button class="tab" data-class="t1" role="tab" data-on-click="pick1" style="--c:var(--mode-hug)"><span class="dot"></span>Responsive Hug <span class="n">01</span></button>
       <button class="tab" data-class="t2" role="tab" data-on-click="pick2" style="--c:var(--mode-heart)"><span class="dot"></span>Heartbeat <span class="n">02</span></button>
@@ -77,22 +77,22 @@
         <div class="legend"><span><i class="lg-lra"></i>Precision motor (LRA)</span><span><i class="lg-erm"></i>Ambient motor (ERM)</span></div>
         <span data-if="isHug" style="display:contents"><button class="hold" data-on-pointerdown="down" data-on-pointerup="up" data-on-pointerleave="up" data-on-keydown="keyDown" data-on-keyup="up" data-on-click="tap"><span data-bind="holdLabel"></span></button></span>
       </div>
-      <div class="stack">
-        <p class="mono" style="color:var(--gold-ink)"><span data-bind="modeNum"></span> · <span data-bind="modeStart"></span></p>
+      <div class="stack mode-info">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="mono" style="color:var(--gold-ink)"><span data-bind="modeNum"></span></span><span class="chip"><span data-bind="modeStart"></span></span></div>
         <h3 class="h3" style="font-size:clamp(34px,4vw,52px)"><span data-bind="modeName"></span></h3>
         <p class="lede"><span data-bind="modeLine"></span></p>
-        <div style="padding-top:8px;border-top:1px solid var(--hair)"><p class="mlabel" style="font-weight: 700; color: #5f7050">Why it works</p><p style="margin:6px 0 0"><span data-bind="modeWhy"></span></p></div>
-        <div><p class="mlabel" style="font-weight: 700; color: #5F7050">When to use this mode</p><p style="margin:6px 0 0"><span data-bind="modeReach"></span></p></div>
+        <div style="padding-top:8px;border-top:1px solid var(--hair)"><p class="mlabel" data-style="labelStyle">Why it works</p><p style="margin:6px 0 0"><span data-bind="modeWhy"></span></p></div>
+        <div><p class="mlabel" data-style="labelStyle">When to use this mode</p><p style="margin:6px 0 0"><span data-bind="modeReach"></span></p></div>
 <div class="card" style="padding:18px 20px 14px;margin-top:6px">
 <p class="mlabel" data-style="accentStyle">What the motors do</p>
-<span data-if="isHug" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="Motor intensity rises as grip pressure increases" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><path d="M10 118 C 140 116, 260 96, 430 22" fill="none" stroke="#7A8C6A" stroke-width="3" stroke-linecap="round"></path><circle r="7" fill="#7A8C6A" class="sig-dot" style="offset-path:path('M10 118 C 140 116, 260 96, 430 22');--d:4s;animation-direction:alternate;animation-timing-function:ease-in-out"></circle><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">light squeeze</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">firm squeeze</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">motor intensity</text></svg></span>
-<span data-if="isHeart" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="Heartbeat pulses spacing out over five minutes" style="width:100%;height:auto;display:block"><line x1="10" y1="110" x2="430" y2="110" stroke="#C8A87A" stroke-width="1"></line><line x1="24" y1="40" x2="24" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="35" y1="62" x2="35" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="61" y1="40" x2="61" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="72" y1="62" x2="72" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="105" y1="40" x2="105" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="116" y1="62" x2="116" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="156" y1="40" x2="156" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="167" y1="62" x2="167" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="214" y1="40" x2="214" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="225" y1="62" x2="225" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="279" y1="40" x2="279" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="290" y1="62" x2="290" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="351" y1="40" x2="351" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="362" y1="62" x2="362" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line x1="430" y1="40" x2="430" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line x1="441" y1="62" x2="441" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">0:00 · lub-dub</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">5:00 · slower</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">one precision motor at the chest</text></svg></span>
-<span data-if="isCalm" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="Three motors rise quickly, hold briefly, then ease down slowly" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><rect class="cbar" x="148" y="30" width="36" height="94" rx="3" fill="#3D6480" style="animation-delay:0s"></rect><rect class="cbar" x="198" y="30" width="36" height="94" rx="3" fill="#3D6480" style="animation-delay:0.2s"></rect><rect class="cbar" x="248" y="30" width="36" height="94" rx="3" fill="#3D6480" style="animation-delay:0.4s"></rect><text x="220" y="144" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">quick rise · brief hold · long ease down</text></svg></span>
-<span data-if="isBox" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="In along the left side, four beats across the top, out down the right side, four beats across the bottom" style="width:100%;height:auto;display:block"><rect x="170" y="30" width="100" height="90" rx="4" fill="none" stroke="#6B5C8C" stroke-width="3"></rect><circle cx="195" cy="30" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="195" cy="120" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="220" cy="30" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="220" cy="120" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="245" cy="30" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="245" cy="120" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="270" cy="30" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle cx="270" cy="120" r="2.5" fill="#6B5C8C" fill-opacity=".45"></circle><circle class="bdot" cx="170" cy="30" r="7" fill="#6B5C8C"></circle><text x="158" y="79" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">in · 4s</text><text x="220" y="20" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">hold · 4 beats</text><text x="282" y="79" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">out · 4s</text><text x="220" y="140" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">hold · 4 beats</text></svg></span>
+<span data-if="isHug" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="The ambient motors hum deeper as grip pressure increases" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><path d="M10 118 C 140 116, 260 96, 430 22" fill="none" stroke="#7A8C6A" stroke-width="3" stroke-linecap="round"></path><circle r="7" fill="#7A8C6A" class="sig-dot" style="offset-path:path('M10 118 C 140 116, 260 96, 430 22');--d:4s;animation-direction:alternate;animation-timing-function:ease-in-out"></circle><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">light hold</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">firm hold</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#5F7050">ambient motors: the hum deepens as you hold tighter</text></svg></span>
+<span data-if="isHeart" style="display:contents"><svg viewBox="0 0 440 166" role="img" aria-label="Heartbeat pulses spacing out over five minutes, with a low steady ambient hum underneath" style="width:100%;height:auto;display:block"><line x1="10" y1="110" x2="430" y2="110" stroke="#C8A87A" stroke-width="1"></line><line class="hb" style="--d:0.0s" x1="24" y1="40" x2="24" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:0.55s" x1="35" y1="62" x2="35" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:1.5s" x1="61" y1="40" x2="61" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:2.05s" x1="72" y1="62" x2="72" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:3.0s" x1="105" y1="40" x2="105" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:3.55s" x1="116" y1="62" x2="116" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:4.5s" x1="156" y1="40" x2="156" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:5.05s" x1="167" y1="62" x2="167" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:6.0s" x1="214" y1="40" x2="214" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:6.55s" x1="225" y1="62" x2="225" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:7.5s" x1="279" y1="40" x2="279" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:8.05s" x1="290" y1="62" x2="290" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:9.0s" x1="351" y1="40" x2="351" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:9.55s" x1="362" y1="62" x2="362" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:10.5s" x1="418" y1="40" x2="418" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:11.05s" x1="429" y1="62" x2="429" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><text x="10" y="160" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">0:00 · lub-dub</text><text x="430" y="160" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">5:00 · slower</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#8C3A3A">precision motors: one main, two softer</text><text x="10" y="126" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors: a low, steady hum</text><clipPath id="hbclip"><rect x="10" y="118" width="420" height="36"></rect></clipPath><g clip-path="url(#hbclip)"><g class="erm-wave"><path class="erm-band" d="M10 136 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 " fill="none" style="stroke:var(--erm)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></g></svg></span>
+<span data-if="isCalm" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="Two ambient motors rise quickly, hold briefly, then ease down slowly, while one precision motor gives four soft taps in between" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><rect class="cbar" x="150" y="34" width="40" height="90" rx="3" style="fill:var(--erm);animation-delay:0s"></rect><rect class="cbar" x="200" y="34" width="40" height="90" rx="3" style="fill:var(--erm);animation-delay:0.2s"></rect><circle class="tap-dot" cx="347" cy="116" r="6" fill="#C8920E"></circle><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors: rise · hold · ease down</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">precision: four soft taps</text><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">6 s rise · hold · 11 s fall · pause</text></svg></span>
+<span data-if="isBox" style="display:contents"><svg viewBox="0 0 440 172" role="img" aria-label="Box Breathing over 16 seconds. The ambient motors ramp up over four seconds, hold high while a precision motor taps four times, ramp down over four seconds, then hold low while it taps four times." style="width:100%;height:auto;display:block"><text x="20" y="12" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors</text><g font-family="DM Mono,monospace" font-size="11" fill="#6B5638" text-anchor="middle"><text x="70" y="30">in · 4 s</text><text x="170" y="30">hold · 4 taps</text><text x="270" y="30">out · 4 s</text><text x="370" y="30">hold · 4 taps</text></g><g stroke="#DDD2BF" stroke-width="1"><line x1="120" y1="36" x2="120" y2="142"></line><line x1="220" y1="36" x2="220" y2="142"></line><line x1="320" y1="36" x2="320" y2="142"></line></g><polygon points="20,88 120,44 220,44 320,88 420,88 420,88 20,88" style="fill:var(--erm)" opacity=".16"></polygon><polyline points="20,88 120,44 220,44 320,88 420,88" fill="none" style="stroke:var(--erm)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><text x="20" y="116" font-family="DM Mono,monospace" font-size="11" fill="#8A6206">precision motor</text><line x1="20" y1="134" x2="420" y2="134" stroke="#DDD2BF"></line><circle class="bx-tap" cx="132.5" cy="134" r="4.5" style="animation-delay:4.5s"></circle><circle class="bx-tap" cx="157.5" cy="134" r="4.5" style="animation-delay:5.5s"></circle><circle class="bx-tap" cx="182.5" cy="134" r="4.5" style="animation-delay:6.5s"></circle><circle class="bx-tap" cx="207.5" cy="134" r="4.5" style="animation-delay:7.5s"></circle><circle class="bx-tap" cx="332.5" cy="134" r="4.5" style="animation-delay:12.5s"></circle><circle class="bx-tap" cx="357.5" cy="134" r="4.5" style="animation-delay:13.5s"></circle><circle class="bx-tap" cx="382.5" cy="134" r="4.5" style="animation-delay:14.5s"></circle><circle class="bx-tap" cx="407.5" cy="134" r="4.5" style="animation-delay:15.5s"></circle><line class="bx-play" x1="0" y1="36" x2="0" y2="146" stroke="#2A1A08" stroke-width="1.5" opacity=".5"></line><circle class="bx-ride" r="5.5" style="fill:var(--erm)" stroke="#fff" stroke-width="2"></circle><g font-family="DM Mono,monospace" font-size="11" fill="#6B5638"><text x="20" y="166">0 s</text><text x="120" y="166" text-anchor="middle">4</text><text x="220" y="166" text-anchor="middle">8</text><text x="320" y="166" text-anchor="middle">12</text><text x="420" y="166" text-anchor="end">16 s</text></g></svg></span>
 </div>
+        
         <div class="rows" style="margin-top:24px">
-          <div><b>Precision motors</b><span><span data-bind="lraNote"></span></span></div>
-          <div><b>Ambient motors</b><span><span data-bind="ermNote"></span></span></div>
+          <div><b>Motors in play</b><span><span data-bind="motorsNote"></span></span></div>
           <div><b>Runs for</b><span><span data-bind="modeTime"></span></span></div>
         </div>
         <p class="fine">Animation is illustrative. Motor positions are simplified.</p>
@@ -101,30 +101,66 @@
   </div>
 </section>
 
+<!-- OPERATE -->
+<section class="sec bg-brown on-dark" id="operate" style="padding-block: clamp(48px, 6vw, 88px)">
+  <div class="wrap">
+    <p class="eyebrow">Simple to operate</p>
+    <h2 class="h2">Press, then <span class="i">follow the light.</span></h2>
+    <p class="lede" style="margin:18px 0 36px">One button. The light tells you the rest.</p>
+    <div class="op-grid">
+      <div class="op-card">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="none" stroke="#2A1A08" stroke-opacity=".18" stroke-width="5"></circle><circle cx="40" cy="40" r="30" fill="none" stroke="#5FA05A" stroke-width="5" stroke-linecap="round" stroke-dasharray="94 189" transform="rotate(-90 40 40)"></circle><circle cx="40" cy="40" r="13" fill="#5FA05A"></circle></svg>
+        <span class="mono">Hold 1 second</span>
+        <h3>Wake him</h3>
+        <p>The light breathes green as you hold. Then a Wake and Settle vibration lets you feel that he is on.</p>
+      </div>
+      <div class="op-card">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="none" stroke="#2A1A08" stroke-opacity=".18" stroke-width="2"></circle><circle cx="40" cy="40" r="22" fill="none" stroke="#2A1A08" stroke-opacity=".3" stroke-width="2"></circle><circle cx="40" cy="40" r="13" fill="#C8920E"></circle></svg>
+        <span class="mono">Short press</span>
+        <h3>Change mode</h3>
+        <p>Each press moves to the next mode, and the light changes color to match.</p>
+        <ol class="op-cycle">
+          <li style="--c:var(--mode-hug)"><i></i>Responsive Hug</li>
+          <li style="--c:var(--mode-heart)"><i></i>Heartbeat</li>
+          <li style="--c:var(--mode-calm)"><i></i>Deep Calm</li>
+          <li style="--c:var(--mode-box)"><i></i>Box Breathing</li>
+        </ol>
+        <span class="mono op-back">&#8635; Press again to return to Hug</span>
+      </div>
+      <div class="op-card">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="30" fill="none" stroke="#2A1A08" stroke-opacity=".18" stroke-width="5"></circle><circle cx="40" cy="40" r="30" fill="none" stroke="#C0453B" stroke-width="5" stroke-linecap="round" stroke-dasharray="188 189" transform="rotate(-90 40 40)"></circle><circle cx="40" cy="40" r="13" fill="#C0453B" fill-opacity=".55"></circle></svg>
+        <span class="mono">Hold 2 seconds</span>
+        <h3>Put him to sleep</h3>
+        <p>The light breathes red as you hold. Then a Settling Descent vibration lets you feel that he is going to sleep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EVERY FEATURE -->
-<section class="sec">
+<section class="sec" style="padding-block: clamp(32px, 4.5vw, 60px)">
   <div class="wrap">
     <p class="eyebrow">Built in</p>
     <h2 class="h2">Every detail, <span class="i">placed on purpose.</span></h2>
-    <div class="cols4" style="margin-top:44px">
-      <figure style="margin:0"><div class="img-card"><img src="img/081909d0db5cbfb1e2aab46a27dca16f.jpg" alt="Back view of Norman showing the USB-C charging port"></div><figcaption class="cap">Back · USB-C charging port</figcaption></figure>
-      <figure style="margin:0"><div class="img-card"><img src="img/dd0494dfa1f3c914ea2d2028f4207f74.jpg" alt="Left side of Norman showing the LED push button"></div><figcaption class="cap">Left side · LED push button</figcaption></figure>
-      <figure style="margin:0"><div class="img-card"><img src="img/f63e627b921e67725627ddfa98a0c893.jpg" alt="Right side of Norman showing the invisible zipper and product tag"></div><figcaption class="cap">Right side · invisible zipper, product tag</figcaption></figure>
-      <figure style="margin:0"><div class="img-card"><img src="img/99bfeb6985b564b12ae00e2a658d8766.jpg" alt="Top view of Norman showing the heart-shaped press indicator on his upper back"></div><figcaption class="cap">Top · press indicator</figcaption></figure>
+    <div class="cols2" style="margin-top:44px">
+      <figure style="margin:0"><div class="img-card" style="aspect-ratio:731 / 500"><img src="norman-back.jpg" alt="Back view of Norman showing the USB-C charging port"></div><figcaption class="cap">Back · USB-C charging port</figcaption></figure>
+      <figure style="margin:0"><div class="img-card" style="aspect-ratio:731 / 500"><img src="norman-left.jpg" alt="Left side of Norman showing the LED push button"></div><figcaption class="cap">Left side · LED push button</figcaption></figure>
+      <figure style="margin:0"><div class="img-card" style="aspect-ratio:731 / 500"><img src="norman-right.jpg" alt="Right side of Norman showing the invisible zipper and product tag"></div><figcaption class="cap">Right side · invisible zipper, product tag</figcaption></figure>
+      <figure style="margin:0"><div class="img-card" style="aspect-ratio:731 / 500"><img src="norman-top.jpg" alt="Top view of Norman showing the heart-shaped press indicator on his upper back"></div><figcaption class="cap">Top · press indicator</figcaption></figure>
     </div>
     <p class="fine" style="margin-top:14px">Concept renders. Final materials and details may vary.</p>
   </div>
 </section>
 
 <!-- INSIDE -->
-<section class="sec bg-warm">
+<section class="sec bg-warm" style="padding-block: clamp(32px, 4.5vw, 60px)">
   <div class="wrap">
     <p class="eyebrow">What's inside</p>
     <h2 class="h2">Soft on the outside. <span class="i">Considered within.</span></h2>
     <div class="cols3" style="margin-top:40px;gap:24px">
-      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Weight</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Deep pressure comfort</h3><p style="margin-top:12px;font-size:15.5px">Microscopic glass beads in six compartments give him a settled, even weight. He sits in your lap or against your chest and stays put.</p></div>
-      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Touch</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Answers when you squeeze</h3><p style="margin-top:12px;font-size:15.5px">A pressure sensor under the heart on his upper back notices how firmly you hold, so Responsive Hug can match you.</p></div>
-      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Quiet</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Nothing to manage</h3><p style="margin-top:12px;font-size:15.5px">No app, no screen and no wireless. WiFi and Bluetooth are off in firmware. One button is all there is to learn.</p></div>
+      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Weight</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Deep pressure comfort</h3><p style="margin-top:12px;font-size:15.5px">He is a chunky one, clocking in at 5 lbs, and the heft is the point. His settled, even weight feels calming and grounding in your lap or against your chest, and he stays put.</p></div>
+      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Touch</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Answers when you hold him</h3><p style="margin-top:12px;font-size:15.5px">A pressure sensor under the heart patch on his upper back reads how firmly you press in Responsive Hug, and runs Box Breathing for as long as you hold.</p></div>
+      <div class="card" style="padding:30px"><p class="mono" style="color:var(--gold-ink)">Simple</p><h3 class="h3" style="font-size:28px;font-weight:400;margin-top:8px">Nothing to manage</h3><p style="margin-top:12px;font-size:15.5px">No app, no screen and no wireless. WiFi and Bluetooth are off in firmware. One button and four colors, one for each mode, are all there is to learn.</p></div>
     </div>
   </div>
 </section>
@@ -135,32 +171,42 @@
     <div class="stack"><p class="eyebrow">Size and build</p><h2 class="h2">Made to be <span class="i">held.</span></h2>
     <p class="lede">Long enough to rest across your lap, and about the weight of a bag of flour. Enough weight to feel.</p>
     <div class="rows" style="margin-top:24px">
-      <div><b>Size</b><span>18 in long, 6 in wide, 6 in tall</span></div>
+      <div><b>Size</b><span>18 in long, 6 in wide, 6 in tall without horns</span></div>
       <div><b>Weight</b><span>About 5 lb</span></div>
       <div><b>Outside</b><span>Double hand-stitched polyester fur and details</span></div>
-      <div><b>Inside</b><span>Microscopic glass beads in six compartments throughout his body, plus soft polyester filling</span></div>
+      <div><b>Inside</b><span>Microscopic glass beads spread evenly throughout his body, plus soft polyester filling</span></div>
       <div><b>Care</b><span>Hand wash only</span></div>
     </div></div>
-    <div class="card" style="padding:28px"><svg viewBox="0 0 440 190" role="img" aria-label="Norman measures 18 inches long, 6 inches wide and 6 inches tall" style="width:100%;height:auto;display:block"><rect x="40" y="40" width="360" height="110" rx="46" fill="#EDE4D5" stroke="#C8A87A" stroke-width="1.5"></rect><line x1="40" y1="172" x2="400" y2="172" stroke="#6B5638" stroke-width="1"></line><line x1="40" y1="166" x2="40" y2="178" stroke="#6B5638"></line><line x1="400" y1="166" x2="400" y2="178" stroke="#6B5638"></line><text x="220" y="188" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#6B5638">18 in long</text><line x1="420" y1="40" x2="420" y2="150" stroke="#6B5638" stroke-width="1"></line><line x1="414" y1="40" x2="426" y2="40" stroke="#6B5638"></line><line x1="414" y1="150" x2="426" y2="150" stroke="#6B5638"></line><text x="430" y="99" font-family="DM Mono,monospace" font-size="12" fill="#6B5638" transform="rotate(90 430 99)" text-anchor="middle">6 in tall</text><text x="220" y="100" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="26" fill="#6B5638">about 5 lb</text><text x="220" y="24" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#6B5638">6 in wide</text></svg><p class="fine" style="margin-top:8px;text-align:center">Approximate dimensions of the prototype.</p></div>
+    <div><div class="card" style="padding:20px"><svg viewBox="20 10 760 424" style="width:100%;height:auto;display:block" role="img" aria-label="Norman is about as long as an 18 inch throw pillow, six inches tall without his horns, and weighs about as much as a 5 pound bag of flour"><defs><pattern id="nsStripe" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#EEE7D6"/><line x1="0" y1="0" x2="0" y2="12" stroke="#C8B48A" stroke-width="2"/></pattern></defs><g transform="translate(16,0)"><g stroke="#3A2A14" stroke-width="1.2"><line x1="62" y1="158" x2="62" y2="325"/><line x1="56" y1="158" x2="68" y2="158"/><line x1="56" y1="325" x2="68" y2="325"/></g><text x="40" y="241" text-anchor="middle" transform="rotate(-90 40 241)" font-family="DM Mono,monospace" font-size="23" fill="#6B5638">6 in tall, without horns</text><rect x="100" y="30" width="360" height="330" rx="40" fill="url(#nsStripe)" stroke="#C8B48A" stroke-width="2"/><circle cx="280" cy="195" r="5" fill="#C8B48A"/><image href="norman-right.jpg" x="96" y="110" width="368" height="252" style="mix-blend-mode:multiply"/><g stroke="#3A2A14" stroke-width="1.2"><line x1="100" y1="382" x2="460" y2="382"/><line x1="100" y1="376" x2="100" y2="388"/><line x1="460" y1="376" x2="460" y2="388"/></g><text x="280.0" y="416" text-anchor="middle" font-family="DM Mono,monospace" font-size="23" fill="#6B5638">18 in, like a throw pillow</text></g><g transform="translate(600,170)"><path d="M10 6 Q57 -8 104 6 L110 30 L110 178 Q57 192 4 178 L4 30 Z" fill="#F3EDE0" stroke="#3A2A14" stroke-width="1.5"/><path d="M10 6 Q57 18 104 6" fill="none" stroke="#3A2A14" stroke-width="1.2"/><rect x="22" y="62" width="70" height="52" rx="4" fill="none" stroke="#C8920E" stroke-width="2"/><text x="57" y="97" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="28" fill="#3A2A14">flour</text></g><text x="657" y="416" text-anchor="middle" font-family="DM Mono,monospace" font-size="23" fill="#6B5638">5 lb of flour</text></svg></div><p class="fine" style="margin-top:14px">Approximate dimensions of the prototype.</p></div>
   </div>
 </section>
 
-<!-- CONTROLS -->
-<section class="sec bg-warm">
-  <div class="wrap cols2" style="gap:24px">
-    <div class="ctl"><span class="mono">Power</span><ul><li>Rechargeable 18650 battery, 3,000 mAh</li><li>Roughly 20 days per charge at about 30 minutes of use a day*</li><li>USB-C charging, port on his back. A full charge takes roughly 4 to 7 hours*</li></ul></div>
-    <div class="ctl"><span class="mono">Everyday use</span><ul><li>One LED push button on his side switches modes</li><li>Hand wash only</li><li>No wireless. WiFi and Bluetooth are off in firmware</li></ul></div>
-  </div>
-  <div class="wrap"><p class="fine" style="margin-top:14px">*Early estimates, not yet independently verified.</p></div>
-  <div class="wrap" style="margin-top:56px">
-    <p class="eyebrow">At a glance</p>
-    <div class="rows">
-      <div><b>Motors</b><span>3 precision (LRA), 2 ambient (ERM)</span></div>
-      <div><b>Modes</b><span>Responsive Hug, Heartbeat, Deep Calm, Box Breathing</span></div>
-      <div><b>Sensing</b><span>Pressure sensor beneath the upper-back heart</span></div>
-      <div><b>Connectivity</b><span>None. No app, no screen, no wireless</span></div>
-      <div><b>Battery</b><span>18650, 3,000 mAh, USB-C charging</span></div>
-      <div><b>What he is</b><span>A wellness companion. Not a toy. Not a medical device. Something in between.</span></div>
+<!-- DETAILS -->
+<section class="sec bg-warm" style="padding-bottom: clamp(28px, 3.5vw, 48px)">
+  <div class="wrap">
+    <p class="eyebrow">Everyday life</p>
+    <h2 class="h2">Easy to <span class="i">live with.</span></h2>
+    <div class="live-grid">
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="21" height="12" rx="3.5"></rect><path d="M28 14.2v3.6"></path><rect x="7.5" y="13.5" width="9" height="5" rx="1.5" fill="#AB7A08" stroke="none"></rect></svg></span><span class="mono">Battery</span><h3>About 20 days</h3><p>Per charge, at around 30 minutes of use a day.*</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11"></circle><path d="M16 9v7l4.5 3"></path></svg></span><span class="mono">Run time</span><h3>Sessions that fit your day</h3><p>Heartbeat runs 5 minutes and Deep Calm runs 10. Responsive Hug and Box Breathing run for as long as you hold him.</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11"></circle><circle cx="16" cy="16" r="4.5" fill="#AB7A08" stroke="none"></circle></svg></span><span class="mono">Controls</span><h3>One button</h3><p>No app and nothing to set up. Everything happens on the button on his side.</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 14c0-4.7 3.6-8 8.5-8s8.5 3.3 8.5 8v11a2.5 2.5 0 0 1-2.5 2.5h-12A2.5 2.5 0 0 1 7.5 25z"></path><path d="M13 6.4V5.2a3 3 0 0 1 6 0v1.2"></path><path d="M11.5 20.5h9v5h-9z"></path><path d="M16 20.5v2"></path></svg></span><span class="mono">Portable</span><h3>Easy to take along</h3><p>About 5 lb and about the size of a throw pillow.</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10.5" width="17" height="11" rx="5.5"></rect><path d="M8 16h7"></path><path d="M20 16h5q2.5 0 2.5 2.5V27"></path></svg></span><span class="mono">Charging</span><h3>Charge with USB-C</h3><p>Use a standard USB-C cable and power adapter. The port is on his back, and a full charge takes roughly 4 to 7 hours.*</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="3.5" fill="#AB7A08" stroke="none"></circle><path d="M16 4.5v3M16 24.5v3M4.5 16h3M24.5 16h3M8 8l2.1 2.1M21.9 21.9L24 24M24 8l-2.1 2.1M10.1 21.9L8 24"></path></svg></span><span class="mono">Status light</span><h3>A light for the battery</h3><p>A red pulse means he is charging. A gold pulse means the battery is low, and it only shows while he is asleep, so it never interrupts a session.</p></div>
+      <div class="live-card wide"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="16" cy="24" rx="9.5" ry="3.8"></ellipse><ellipse cx="15.2" cy="16.8" rx="6.6" ry="3.2"></ellipse><ellipse cx="16.4" cy="10.6" rx="4" ry="2.6"></ellipse></svg></span><span class="mono">Without vibration</span><h3>His weight can be enough on its own</h3><p>You do not have to turn him on every time. Some days, simply holding him close, with his 5 lb of weight, is enough.</p></div>
+    </div>
+    <p class="fine" style="margin-top:14px">*Early estimates, not yet independently verified.</p>
+    <div style="margin-top:56px">
+      <p class="eyebrow">At a glance</p>
+      <div class="rows">
+        <div><b>Motors</b><span>3 precision (LRA), 2 ambient (ERM)</span></div>
+        <div><b>Modes</b><span>Responsive Hug, Heartbeat, Deep Calm, Box Breathing</span></div>
+        <div><b>Sensing</b><span>Pressure sensor beneath the upper-back heart</span></div>
+        <div><b>Battery</b><span>Rechargeable 18650, 3,000 mAh</span></div>
+        <div><b>Wireless</b><span>None. WiFi and Bluetooth are off in firmware</span></div>
+        <div><b>Care</b><span>Hand wash only</span></div>
+        <div><b>What he is</b><span>A wellness companion. Not a toy. Not a medical device. Something in between.</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -197,10 +243,10 @@
 class Component extends DCLogic {
   state = { mode: 1, hold: false, email: '', joined: false };
   M = {
-    1: { acc: '#5F7050', why: 'Deep pressure input, on demand and proportional to how hard you hold. You set the intensity and Norman answers it.', reach: 'When you need something to push against. Waiting rooms, turbulence, the moment before you walk in.', cls: 'st-hug', name: 'Responsive Hug', start: 'Hug or squeeze to start', line: 'Squeeze him and he answers, stronger the harder you hold. Let go and he settles.', lra: 'Resting in this mode. The ambient motors do the work.', erm: 'Both ambient motors answer your squeeze with a soft, fuzzy hum that deepens the harder you hold.', time: 'As long as you hold. No timer.' },
-    2: { acc: '#8C3A3A', why: 'A slowing external rhythm to settle alongside, the same steady cue that co-regulation through touch relies on.', reach: 'When you are alone and would rather not be. Bedtime, recovery, the long afternoon.', cls: 'st-heart', name: 'Heartbeat', start: 'Starts on its own', line: 'A real lub-dub heartbeat that gradually slows over five minutes, like pressing your ear to someone\'s chest and feeling their calm.', lra: 'One precision motor beats at his chest, slowing as it goes.', erm: 'Both ambient motors keep a low, steady buzz underneath the beats, for an ambient feel.', time: '5 minutes' },
-    3: { acc: '#3D6480', why: 'The release lasts nearly twice as long as the build, so the longest part of every wave is the part that lets go.', reach: 'When you are already past the peak and coming down. After the appointment, after the meeting, after the day.', cls: 'st-calm', name: 'Deep Calm', start: 'Starts on its own', line: 'A gentle rise builds quickly, holds for a beat, then eases back down slowly, like a held breath releasing.', lra: 'One precision motor adds a soft, steady tap.', erm: 'Both ambient motors do the work, ramping up quickly, then easing down slowly.', time: '10 minutes' },
-    4: { acc: '#6B5C8C', why: 'Four counts in, four held, four out, four held, paced by something in your hands instead of something on a screen.', reach: 'When you want to do the breathing but cannot keep count. Norman keeps it for you.', cls: 'st-box', name: 'Box Breathing', start: 'Press and hold to start', line: 'Four in, four held, four out, four held. He keeps the count so you can pace your breath.', lra: 'Light taps mark each phase of the count.', erm: 'Quiet ambient hum between the taps.', time: 'Until you pause. Hold again to resume.' }
+    1: { acc: '#5F7050', why: 'Deep pressure input, on demand and proportional to how hard you hold. You set the intensity and Norman answers it.', reach: 'When you need something to push against. Waiting rooms, turbulence, the moment before you walk in.', cls: 'st-hug', motors: 'Both ambient motors, humming deeper as you hold tighter. The precision motors rest.', name: 'Responsive Hug', start: 'hug him to start', line: 'Hug him and he answers, softly at first, then deeper as you hold tighter. Let go and he settles.', lra: 'Resting in this mode. The ambient motors do the work.', erm: 'Both ambient motors answer your hug with a soft, fuzzy hum that deepens the harder you hold.', time: 'As long as you hold. No timer.' },
+    2: { acc: '#8C3A3A', why: 'A slowing external rhythm to settle alongside, the same steady cue that co-regulation through touch relies on.', reach: 'When you are alone and would rather not be. Bedtime, recovery, the long afternoon.', cls: 'st-heart', motors: 'All three precision motors play the beat, one main and two softer, with both ambient motors adding a low, steady hum underneath.', name: 'Heartbeat', start: 'auto-starts · 5 min', line: 'A real lub-dub heartbeat that gradually slows over five minutes, like pressing your ear to someone\'s chest and feeling their calm.', lra: 'All three precision motors play, one main and two softer, slowing as it goes.', erm: 'Both ambient motors keep a low, steady buzz underneath the beats, for an ambient feel.', time: '5 minutes. Press again to start a new cycle.' },
+    3: { acc: '#3D6480', why: 'The release lasts nearly twice as long as the build, so the longest part of every wave is the part that lets go.', reach: 'When you are already past the peak and coming down. After the appointment, after the meeting, after the day.', cls: 'st-calm', motors: 'One precision motor for a soft tap, and both ambient motors rising and easing back.', name: 'Deep Calm', start: 'auto-starts · 10 min', line: 'A gentle rise builds quickly, holds for a beat, then eases back down slowly, like a held breath releasing.', lra: 'One precision motor adds a soft, steady tap.', erm: 'Both ambient motors do the work, ramping up quickly, then easing down slowly.', time: '10 minutes. Press again to start a new cycle.' },
+    4: { acc: '#6B5C8C', why: 'Four counts in, four held, four out, four held, paced by something in your hands instead of something on a screen.', reach: 'When you want to do the breathing but cannot keep count. Norman keeps it for you.', cls: 'st-box', motors: 'Both ambient motors ramp up for the in breath and back down for the out breath. One precision motor taps four times through each hold.', name: 'Box Breathing', start: 'press and hold to start', line: 'Four in, four held, four out, four held. He keeps the count so you can pace your breath.', lra: 'Light taps mark each phase of the count.', erm: 'Quiet ambient hum between the taps.', time: 'Until you pause. Hold again to resume.' }
   };
   jump = () => {
     try {
@@ -224,9 +270,9 @@ class Component extends DCLogic {
   renderVals() {
     const m = this.state.mode, d = this.M[m];
     const v = {
-      holdLabel: this.state.hold ? 'Squeezing' : 'Press and hold to squeeze',
+      holdLabel: this.state.hold ? 'Hugging' : 'Press and hold to hug',
       stageCls: d.cls + (m === 1 && this.state.hold ? ' hug-on' : ''),
-      modeNum: '0' + m, accentStyle: 'color:' + d.acc, modeWhy: d.why, modeReach: d.reach, modeStart: d.start, modeName: d.name, modeLine: d.line, lraNote: d.lra, ermNote: d.erm, modeTime: d.time,
+      modeNum: '0' + m, accentStyle: 'color:' + d.acc, labelStyle: 'font-weight:700;color:' + ['#566A47','var(--mode-heart)','var(--mode-calm)','var(--mode-box)'][m-1] + ';', modeWhy: d.why, modeReach: d.reach, modeStart: d.start, modeName: d.name, modeLine: d.line, motorsNote: d.motors, lraNote: d.lra, ermNote: d.erm, modeTime: d.time,
       isHug: m === 1, isHeart: m === 2, isCalm: m === 3, isBox: m === 4,
       down: this.down, up: this.up, keyDown: this.keyDown, tap: this.tap,
       email: this.state.email, onEmail: (e) => this.setState({ email: e.target.value }),
