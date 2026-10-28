@@ -42,12 +42,20 @@
 <section class="sec bg-warm"><div class="wrap split"><div><div class="img-card" style="aspect-ratio:1/1;max-width:520px"><img src="img/e9233bd99ee312af81f843256ccd870a.jpg" alt="Suz with the Highland cow plush that started it all"></div></div>
 <div class="stack"><p class="eyebrow">The founder</p><h2 class="h2">About <span class="i">Suz.</span></h2><p>Suz Tocco is a Principal Designer at Microsoft, a maker, and someone who is wired differently. She built Norman because she needed him, and because nothing like him existed.</p><p>He was built at home, tested in her lap, and designed from lived experience rather than a product brief. She believes the most powerful tools are the ones that meet you exactly where you are.</p><p class="quote" style="font-size:clamp(24px,2.6vw,34px)">“Some of us need more. <span class="i">More weight. More warmth. More time. Norman was built for more.</span>”</p></div></div></section>
 <section class="sec bg-brown on-dark"><div class="wrap center" style="max-width:900px"><p class="eyebrow">What we believe</p><h2 class="h1">We believe <span class="i">different</span> is the whole point.</h2><p class="lede" style="margin:28px auto 0">Norman is for everyone whose nervous system needs more than the world typically offers. For children who need something that holds them back. For adults in waiting rooms, meetings and performances, quietly managing what nobody else can see. For anyone who has ever been told their needs are too much.</p><p class="quote" style="margin-top:40px;color:var(--cc-gold-light)">“I'm allowed to be different. I'm allowed to be me.”</p></div></section>
-<section class="sec bg-brown on-dark"><div class="wrap center"><p class="eyebrow">Be the first to know</p><h2 class="h1">The hug that <span class="i">hugs back.</span></h2><p style="margin-top:30px"><a class="btn btn-gold" href="index.html#waitlist">Join the waitlist</a></p></div></section>
+<section class="sec bg-brown on-dark" id="waitlist">
+  <div class="wrap center">
+    <p class="eyebrow">Be the first to know</p>
+    <h2 class="h1">The hug that <span class="i">hugs back.</span></h2>
+    <p class="lede" style="margin:22px auto 36px">Join the waitlist and you'll hear from us first.</p>
+    <span data-if="notJoined" style="display:contents"><form data-on-submit="joinSubmit" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><div class="field" style="flex:1 1 300px;max-width:400px;text-align:left"><label class="sr" for="wl-email">Email</label><input id="wl-email" type="email" required="required" placeholder="Enter your email address" data-on-change="onEmail"></div><button class="btn btn-gold" type="submit">Join the waitlist</button></form></span>
+    <span data-if="joined" style="display:contents"><p class="thanks">You're in. Norman is taking his time, and we'll be in touch as he takes shape.</p></span>
+  </div>
+</section>
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr-in">
       <div>
-        <div class="wm">CalmCompanion™<em>Calm, by Design™</em></div>
+        <a class="wm" href="index.html">CalmCompanion™<em>Calm, by Design™</em></a>
         <p class="fine" style="margin-top:22px;max-width:44ch;color:var(--cc-brown-light)">Norman is a wellness product designed to help you find calm. He is not a medical device and is not intended to diagnose, treat or cure any condition.</p>
       </div>
       <div><h5>Explore</h5><a href="meet-norman.html">Meet Norman</a><a href="the-science.html">The Science</a><a href="for-professionals.html">For Professionals</a></div>
@@ -63,9 +71,9 @@
 <script>
 
 class Component extends DCLogic {
-  state = { sent: false, open: 0 };
+  state = { email: '', joined: false, sent: false, open: 0 };
   renderVals() {
-    const v = { goWait: () => { try { localStorage.setItem('cc-jump', 'waitlist'); } catch (e) {} }, sent: this.state.sent, notSent: !this.state.sent, submit: (e) => { e.preventDefault(); this.setState({ sent: true }); } };
+    const v = { email: this.state.email, onEmail: (e) => this.setState({ email: e.target.value }), joined: this.state.joined, notJoined: !this.state.joined, joinSubmit: (e) => { e.preventDefault(); this.setState({ joined: true }); }, goWait: () => { try { localStorage.setItem('cc-jump', 'waitlist'); } catch (e) {} }, sent: this.state.sent, notSent: !this.state.sent, submit: (e) => { e.preventDefault(); this.setState({ sent: true }); } };
     for (let i = 0; i < 9; i++) { v['o' + i] = this.state.open === i + 1; v['c' + i] = this.state.open !== i + 1; v['t' + i] = () => this.setState({ open: this.state.open === i + 1 ? 0 : i + 1 }); }
     return v;
   }
