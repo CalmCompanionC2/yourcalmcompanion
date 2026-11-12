@@ -62,6 +62,7 @@
     </div>
     <div class="split" style="margin-top:28px;align-items:stretch">
       <div class="stage stagebox" data-class="stageCls" aria-live="polite">
+        <div class="stage-chip"><span class="chip"><span class="mono" style="color:var(--gold-ink)"><span data-bind="modeNum"></span></span><span data-bind="modeStart"></span></span></div>
         <div class="nm nm-lg" role="img" aria-label="Norman, a Highland cow">
 <div class="nm-in">
 <img src="img/2ccac72786a0bbb4058b259ee2ed66c8.svg" alt="" style="left:32.5px;top:126.3px;width:158px;height:107px">
@@ -75,17 +76,16 @@
 <g class="mlbl"><text x="124" y="141.4">M1</text><text x="124" y="163.4">M2</text><text x="124" y="185.4">M3</text><text x="84" y="177" text-anchor="middle">ERM1</text><text x="144" y="177" text-anchor="middle">ERM2</text></g>
 </svg></div></div>
         <div class="legend"><span><i class="lg-lra"></i>Precision motor (LRA)</span><span><i class="lg-erm"></i>Ambient motor (ERM)</span></div>
-        <span data-if="isHug" style="display:contents"><button class="hold" data-on-pointerdown="down" data-on-pointerup="up" data-on-pointerleave="up" data-on-keydown="keyDown" data-on-keyup="up" data-on-click="tap"><span data-bind="holdLabel"></span></button></span>
+        <p class="fine stage-note">Animation is illustrative. Motor positions are simplified.</p>
       </div>
       <div class="stack mode-info">
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="mono" style="color:var(--gold-ink)"><span data-bind="modeNum"></span></span><span class="chip"><span data-bind="modeStart"></span></span></div>
         <h3 class="h3" style="font-size:clamp(34px,4vw,52px)"><span data-bind="modeName"></span></h3>
         <p class="lede"><span data-bind="modeLine"></span></p>
         <div style="padding-top:8px;border-top:1px solid var(--hair)"><p class="mlabel" data-style="labelStyle">Why it works</p><p style="margin:6px 0 0"><span data-bind="modeWhy"></span></p></div>
         <div><p class="mlabel" data-style="labelStyle">When to use this mode</p><p style="margin:6px 0 0"><span data-bind="modeReach"></span></p></div>
 <div class="card" style="padding:18px 20px 14px;margin-top:6px">
 <p class="mlabel" data-style="accentStyle">What the motors do</p>
-<span data-if="isHug" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="The ambient motors hum deeper as grip pressure increases" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><path d="M10 118 C 140 116, 260 96, 430 22" fill="none" stroke="#7A8C6A" stroke-width="3" stroke-linecap="round"></path><circle r="7" fill="#7A8C6A" class="sig-dot" style="offset-path:path('M10 118 C 140 116, 260 96, 430 22');--d:4s;animation-direction:alternate;animation-timing-function:ease-in-out"></circle><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">light hold</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">firm hold</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#5F7050">ambient motors: the hum deepens as you hold tighter</text></svg></span>
+<span data-if="isHug" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="The ambient motors hum deeper as grip pressure increases" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><path d="M10 118 C 140 116, 260 96, 430 22" fill="none" stroke="#7A8C6A" stroke-width="3" stroke-linecap="round"></path><circle r="7" fill="#7A8C6A" class="sig-dot hug-dot" style="offset-path:path('M10 118 C 140 116, 260 96, 430 22')"></circle><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">light hold</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">firm hold</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#5F7050">ambient motors: the hum deepens as the hold tightens</text></svg></span>
 <span data-if="isHeart" style="display:contents"><svg viewBox="0 0 440 166" role="img" aria-label="Heartbeat pulses spacing out over five minutes, with a low steady ambient hum underneath" style="width:100%;height:auto;display:block"><line x1="10" y1="110" x2="430" y2="110" stroke="#C8A87A" stroke-width="1"></line><line class="hb" style="--d:0.0s" x1="24" y1="40" x2="24" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:0.55s" x1="35" y1="62" x2="35" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:1.5s" x1="61" y1="40" x2="61" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:2.05s" x1="72" y1="62" x2="72" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:3.0s" x1="105" y1="40" x2="105" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:3.55s" x1="116" y1="62" x2="116" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:4.5s" x1="156" y1="40" x2="156" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:5.05s" x1="167" y1="62" x2="167" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:6.0s" x1="214" y1="40" x2="214" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:6.55s" x1="225" y1="62" x2="225" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:7.5s" x1="279" y1="40" x2="279" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:8.05s" x1="290" y1="62" x2="290" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:9.0s" x1="351" y1="40" x2="351" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:9.55s" x1="362" y1="62" x2="362" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><line class="hb" style="--d:10.5s" x1="418" y1="40" x2="418" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round"></line><line class="hb hb-dub" style="--d:11.05s" x1="429" y1="62" x2="429" y2="110" stroke="#8C3A3A" stroke-width="4" stroke-linecap="round" opacity=".55"></line><text x="10" y="160" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">0:00 · lub-dub</text><text x="430" y="160" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">5:00 · slower</text><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#8C3A3A">precision motors: one main, two softer</text><text x="10" y="126" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors: a low, steady hum</text><clipPath id="hbclip"><rect x="10" y="118" width="420" height="36"></rect></clipPath><g clip-path="url(#hbclip)"><g class="erm-wave"><path class="erm-band" d="M10 136 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 l3 -3 l3 3 " fill="none" style="stroke:var(--erm)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></g></svg></span>
 <span data-if="isCalm" style="display:contents"><svg viewBox="0 0 440 150" role="img" aria-label="Two ambient motors rise quickly, hold briefly, then ease down slowly, while one precision motor gives four soft taps in between" style="width:100%;height:auto;display:block"><line x1="10" y1="124" x2="430" y2="124" stroke="#C8A87A" stroke-width="1"></line><rect class="cbar" x="150" y="34" width="40" height="90" rx="3" style="fill:var(--erm);animation-delay:0s"></rect><rect class="cbar" x="200" y="34" width="40" height="90" rx="3" style="fill:var(--erm);animation-delay:0.2s"></rect><circle class="tap-dot" cx="347" cy="116" r="6" fill="#C8920E"></circle><text x="10" y="14" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors: rise · hold · ease down</text><text x="430" y="144" text-anchor="end" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">precision: four soft taps</text><text x="10" y="144" font-family="DM Mono,monospace" font-size="11" fill="#6B5638">6 s rise · hold · 11 s fall · pause</text></svg></span>
 <span data-if="isBox" style="display:contents"><svg viewBox="0 0 440 172" role="img" aria-label="Box Breathing over 16 seconds. The ambient motors ramp up over four seconds, hold high while a precision motor taps four times, ramp down over four seconds, then hold low while it taps four times." style="width:100%;height:auto;display:block"><text x="20" y="12" font-family="DM Mono,monospace" font-size="11" fill="#4F6591">ambient motors</text><g font-family="DM Mono,monospace" font-size="11" fill="#6B5638" text-anchor="middle"><text x="70" y="30">in · 4 s</text><text x="170" y="30">hold · 4 taps</text><text x="270" y="30">out · 4 s</text><text x="370" y="30">hold · 4 taps</text></g><g stroke="#DDD2BF" stroke-width="1"><line x1="120" y1="36" x2="120" y2="142"></line><line x1="220" y1="36" x2="220" y2="142"></line><line x1="320" y1="36" x2="320" y2="142"></line></g><polygon points="20,88 120,44 220,44 320,88 420,88 420,88 20,88" style="fill:var(--erm)" opacity=".16"></polygon><polyline points="20,88 120,44 220,44 320,88 420,88" fill="none" style="stroke:var(--erm)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline><text x="20" y="116" font-family="DM Mono,monospace" font-size="11" fill="#8A6206">precision motor</text><line x1="20" y1="134" x2="420" y2="134" stroke="#DDD2BF"></line><circle class="bx-tap" cx="132.5" cy="134" r="4.5" style="animation-delay:4.5s"></circle><circle class="bx-tap" cx="157.5" cy="134" r="4.5" style="animation-delay:5.5s"></circle><circle class="bx-tap" cx="182.5" cy="134" r="4.5" style="animation-delay:6.5s"></circle><circle class="bx-tap" cx="207.5" cy="134" r="4.5" style="animation-delay:7.5s"></circle><circle class="bx-tap" cx="332.5" cy="134" r="4.5" style="animation-delay:12.5s"></circle><circle class="bx-tap" cx="357.5" cy="134" r="4.5" style="animation-delay:13.5s"></circle><circle class="bx-tap" cx="382.5" cy="134" r="4.5" style="animation-delay:14.5s"></circle><circle class="bx-tap" cx="407.5" cy="134" r="4.5" style="animation-delay:15.5s"></circle><line class="bx-play" x1="0" y1="36" x2="0" y2="146" stroke="#2A1A08" stroke-width="1.5" opacity=".5"></line><circle class="bx-ride" r="5.5" style="fill:var(--erm)" stroke="#fff" stroke-width="2"></circle><g font-family="DM Mono,monospace" font-size="11" fill="#6B5638"><text x="20" y="166">0 s</text><text x="120" y="166" text-anchor="middle">4</text><text x="220" y="166" text-anchor="middle">8</text><text x="320" y="166" text-anchor="middle">12</text><text x="420" y="166" text-anchor="end">16 s</text></g></svg></span>
@@ -95,7 +95,6 @@
           <div><b>Motors in play</b><span><span data-bind="motorsNote"></span></span></div>
           <div><b>Runs for</b><span><span data-bind="modeTime"></span></span></div>
         </div>
-        <p class="fine">Animation is illustrative. Motor positions are simplified.</p>
       </div>
     </div>
   </div>
@@ -167,7 +166,7 @@
 </section>
 
 <!-- BUILD -->
-<section class="sec">
+<section class="sec" style="padding-bottom: clamp(32px, 4.5vw, 60px)">
   <div class="wrap split" style="align-items:start">
     <div class="stack"><p class="eyebrow">Size and build</p><h2 class="h2">Made to be <span class="i">held.</span></h2>
     <p class="lede">Long enough to rest across your lap, and about the weight of a bag of flour. Enough weight to feel.</p>
@@ -183,7 +182,7 @@
 </section>
 
 <!-- DETAILS -->
-<section class="sec bg-warm" style="padding-bottom: clamp(28px, 3.5vw, 48px)">
+<section class="sec bg-warm" style="padding-top: clamp(40px, 5.5vw, 72px); padding-bottom: clamp(28px, 3.5vw, 48px)">
   <div class="wrap">
     <p class="eyebrow">Everyday life</p>
     <h2 class="h2">Easy to <span class="i">live with.</span></h2>
@@ -193,7 +192,7 @@
       <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11"></circle><path d="M16 9v7l4.5 3"></path></svg></span><span class="mono">Run time</span><h3>Sessions that fit your day</h3><p>Heartbeat runs 5 minutes and Deep Calm runs 10. Responsive Hug and Box Breathing run for as long as you hold him.</p></div>
       <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="21" height="12" rx="3.5"></rect><path d="M28 14.2v3.6"></path><rect x="7.5" y="13.5" width="9" height="5" rx="1.5" fill="#AB7A08" stroke="none"></rect></svg></span><span class="mono">Battery</span><h3>About 20 days</h3><p>Per charge, at around 30 minutes of use a day.*</p></div>
       <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="16" r="11"></circle><circle cx="16" cy="16" r="4.5" fill="#AB7A08" stroke="none"></circle></svg></span><span class="mono">Controls</span><h3>One button</h3><p>No app and nothing to set up. Everything happens on the button on his side.</p></div>
-      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10.5" width="17" height="11" rx="5.5"></rect><path d="M8 16h7"></path><path d="M20 16h5q2.5 0 2.5 2.5V27"></path></svg></span><span class="mono">Charging</span><h3>Charge with USB-C</h3><p>Use a standard USB-C cable and power adapter. The port is on his back, and a full charge takes roughly 4 to 7 hours.*</p></div>
+      <div class="live-card"><span class="live-ic"><svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#AB7A08" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10.5" width="17" height="11" rx="5.5"></rect><path d="M8 16h7"></path><path d="M20 16h5q2.5 0 2.5 2.5V27"></path></svg></span><span class="mono">Charging</span><h3>Charge with USB-C</h3><p>He works with a standard USB-C cable and power adapter, like the ones you likely already own. The port is on his back, and a full charge takes roughly 4 to 7 hours.*</p></div>
     </div>
     <p class="fine" style="margin-top:14px">*Early estimates, not yet independently verified.</p>
     <div style="margin-top:56px">
@@ -256,30 +255,28 @@ class Component extends DCLogic {
       }
     } catch (e) {}
   };
-  componentDidMount() { this.jump(); this.onStore = () => this.jump(); window.addEventListener('storage', this.onStore); window.addEventListener('focus', this.onStore); }
-  componentWillUnmount() { window.removeEventListener('storage', this.onStore); window.removeEventListener('focus', this.onStore); }
-  down = (e) => { e.preventDefault(); this._pd = Date.now(); this.setState({ hold: true }); };
-  tap = () => {
-    if (this._pd && Date.now() - this._pd < 6000) return;
+  componentDidMount() { this.jump(); this.onStore = () => this.jump(); window.addEventListener('storage', this.onStore); window.addEventListener('focus', this.onStore); this.startLoop(); }
+  componentWillUnmount() { window.removeEventListener('storage', this.onStore); window.removeEventListener('focus', this.onStore); this.stopLoop(); }
+  // Responsive Hug demo plays by itself: gentle, building to a firm hold, release, rest, repeat (9 s)
+  stopLoop = () => { clearTimeout(this._t1); clearTimeout(this._t2); };
+  startLoop = () => {
+    this.stopLoop();
+    try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; } catch (e) {}
     this.setState({ hold: true });
-    clearTimeout(this._tt);
-    this._tt = setTimeout(() => this.setState({ hold: false }), 2800);
+    this._t1 = setTimeout(() => this.setState({ hold: false }), 6000);
+    this._t2 = setTimeout(this.startLoop, 9000);
   };
-  up = () => { if (this.state.hold) this.setState({ hold: false }); };
-  keyDown = (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); this.setState({ hold: true }); } };
   renderVals() {
     const m = this.state.mode, d = this.M[m];
     const v = {
-      holdLabel: this.state.hold ? 'Hugging' : 'Press and hold to hug',
       stageCls: d.cls + (m === 1 && this.state.hold ? ' hug-on' : ''),
       modeNum: '0' + m, accentStyle: 'color:' + d.acc, labelStyle: 'font-weight:700;color:' + ['#566A47','var(--mode-heart)','var(--mode-calm)','var(--mode-box)'][m-1] + ';', modeWhy: d.why, modeReach: d.reach, modeStart: d.start, modeName: d.name, modeLine: d.line, motorsNote: d.motors, lraNote: d.lra, ermNote: d.erm, modeTime: d.time,
       isHug: m === 1, isHeart: m === 2, isCalm: m === 3, isBox: m === 4,
-      down: this.down, up: this.up, keyDown: this.keyDown, tap: this.tap,
       email: this.state.email, onEmail: (e) => this.setState({ email: e.target.value }),
       joined: this.state.joined, notJoined: !this.state.joined,
       submit: (e) => { e.preventDefault(); this.setState({ joined: true }); }
     };
-    [1, 2, 3, 4].forEach(i => { v['t' + i] = m === i ? 'sel' : ''; v['pick' + i] = () => this.setState({ mode: i, hold: false }); });
+    [1, 2, 3, 4].forEach(i => { v['t' + i] = m === i ? 'sel' : ''; v['pick' + i] = () => { this.setState({ mode: i, hold: false }); if (i === 1) setTimeout(this.startLoop, 30); }; });
     return v;
   }
 }
