@@ -165,11 +165,16 @@ body { margin: 0; background: var(--cc-cream); }
 .table-scroll { overflow-x: auto; }
 
 /* accordion (FAQ) */
-.faq { border-top: 1px solid var(--hair); }
-.faq button { all: unset; box-sizing: border-box; width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; cursor: pointer; padding: 22px 4px; font-family: var(--font-display); font-size: 27px; line-height: 1.2; border-bottom: 1px solid var(--hair); }
+.faq { border-bottom: 1px solid var(--hair); }
+.faq > h3 { border-top: 1px solid var(--hair); }
+.faq > h3:first-child { border-top: 0; }
+.faq button { all: unset; box-sizing: border-box; width: 100%; display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 20px; cursor: pointer; padding: 22px 4px; font-family: var(--font-display); font-size: 27px; line-height: 1.2; }
 .faq button:focus-visible { outline: 3px solid rgba(200, 146, 14, .55); outline-offset: 2px; }
-.faq .plus { font: 300 28px var(--font-body); color: var(--gold-ink); }
-.faq .ans { padding: 6px 4px 26px; font-size: 17px; color: var(--cc-brown-mid); max-width: 62ch; border-bottom: 1px solid var(--hair); }
+.faq .plus { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 1px solid color-mix(in srgb, var(--cc-gold) 40%, transparent); font: 300 24px/1 var(--font-body); color: var(--gold-ink); transition: background .15s ease, border-color .15s ease; }
+.faq button:hover .plus { background: var(--cc-warm); border-color: var(--cc-gold); }
+.faq .ans { padding: 0 4px 28px; font-size: 19px; line-height: 1.7; color: var(--cc-brown-dark); max-width: 68ch; }
+.faq .ans a { color: var(--gold-ink); text-decoration: underline; text-underline-offset: 3px; }
+.faq button[aria-expanded="true"] .plus { background: var(--cc-brown-dark); border-color: var(--cc-brown-dark); color: #fff; }
 
 /* ---------- mascot assembly ---------- */
 .nm { position: relative; width: calc(237px * var(--k, 1)); height: calc(248px * var(--k, 1)); }
@@ -191,6 +196,31 @@ body { margin: 0; background: var(--cc-cream); }
 @keyframes nm-heart { 0% { scale: 1; } 20% { scale: 1.3; } 46% { scale: 1.35; } 93% { scale: 1; } 100% { scale: 1; } }
 .halo { position: absolute; border-radius: 50%; border: 1px solid var(--cc-gold); opacity: 0; animation: halo 4s var(--ease-breath) infinite; pointer-events: none; }
 @keyframes halo { 0% { opacity: 0; scale: .8; } 30% { opacity: .55; } 100% { opacity: 0; scale: 1.25; } }
+
+/* FAQ hero: question bubble pulses three times like the heartbeat dot, then rests */
+.q-bubble { isolation: isolate; position: absolute; top: -40px; left: 190px; width: 64px; height: 64px; border-radius: 50%; background: var(--cc-cream); border: 1.5px solid color-mix(in srgb, var(--cc-gold) 60%, transparent); display: grid; place-items: center; }
+.q-bubble .q { font: 500 34px/1 var(--font-body); color: var(--gold-ink); animation: q-beat 2.2s ease-in-out .8s 3; }
+.q-bubble::before { content: ""; position: absolute; inset: -1.5px; border-radius: 50%; border: 1.5px solid var(--cc-gold); opacity: 0; animation: q-ring 2.2s ease-out .8s 3; pointer-events: none; }
+.q-bubble::after { content: ""; position: absolute; left: 9px; bottom: -6px; width: 14px; height: 14px; background: var(--cc-cream); border-left: 1.5px solid color-mix(in srgb, var(--cc-gold) 60%, transparent); border-bottom: 1.5px solid color-mix(in srgb, var(--cc-gold) 60%, transparent); transform: rotate(-20deg) skew(25deg); z-index: -1; }
+@keyframes q-beat { 0% { scale: 1; } 12% { scale: 1.3; } 24% { scale: 1.04; } 36% { scale: 1.2; } 55%, 100% { scale: 1; } }
+@keyframes q-ring { 0% { opacity: 0; scale: 1; } 10% { opacity: .8; } 70%, 100% { opacity: 0; scale: 1.8; } }
+/* "Ask away" speech pill variant */
+.q-bubble.q-say::after { content: ""; position: absolute; left: auto; right: 13px; bottom: -10px; width: 15px; height: 11px; border: 0; transform: none; z-index: auto; background: var(--cc-cream); clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.q-bubble.q-say { top: 4px; left: -104px; width: auto; height: 46px; padding: 0 24px; border-radius: 23px; animation: q-pop 2.2s ease-in-out .8s 3; }
+.q-bubble.q-say .q { font: italic 400 26px/1 var(--font-display); white-space: nowrap; animation: none; }
+.q-bubble.q-say::before { content: ""; position: absolute; inset: auto; right: 11px; bottom: -13px; width: 19px; height: 14px; border: 0; border-radius: 0; opacity: 1; animation: none; background: color-mix(in srgb, var(--cc-gold) 60%, var(--cc-warm)); clip-path: polygon(0 0, 100% 0, 100% 100%); }
+/* typing-dots variant: dots bounce in turn four times, then rest */
+.q-bubble.q-typing { top: -46px; left: 150px; width: auto; height: 46px; padding: 0 22px; border-radius: 23px; animation: none; }
+.q-bubble.q-typing::before { animation: none; }
+.q-bubble.q-typing .q { display: flex; gap: 7px; align-items: center; animation: none; }
+.q-bubble.q-typing .q i { display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--cc-gold); animation: q-dot 1.3s ease-in-out .8s 4; }
+.q-bubble.q-typing .q i:nth-child(2) { animation-delay: 1s; }
+.q-bubble.q-typing .q i:nth-child(3) { animation-delay: 1.2s; }
+@keyframes q-dot { 0%, 60%, 100% { translate: 0 0; } 30% { translate: 0 -6px; } }
+@media (prefers-reduced-motion: reduce) { .q-bubble.q-typing .q i { animation: none; } }
+@keyframes q-pop { 0% { scale: 1; } 12% { scale: 1.1; } 24% { scale: 1.02; } 36% { scale: 1.07; } 55%, 100% { scale: 1; } }
+@keyframes q-ring-pill { 0% { opacity: 0; scale: 1; } 10% { opacity: .8; } 70%, 100% { opacity: 0; scale: 1.3 1.6; } }
+@media (prefers-reduced-motion: reduce) { .q-bubble, .q-bubble .q, .q-bubble::before { animation: none; } }
 
 /* ---------- mode stage ---------- */
 .tabs { display: flex; gap: 10px; flex-wrap: wrap; }

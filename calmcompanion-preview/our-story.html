@@ -38,7 +38,7 @@
 <p>I went home and built a first prototype with a pressure sensor, a small motor and an Arduino. The moment I squeezed it and felt it squeeze back, something clicked. It answered me.</p>
 <p>I wrote to the makers of the plush with the idea. Then I realized it was mine to build.</p>
 <p class="quote" style="border-left:3px solid var(--cc-gold);padding-left:24px;margin:56px 0 0;font-size:clamp(22px,2.3vw,30px);line-height:1.35">It could. And it was mine to build.</p>
-<p style="margin-top:44px"><a class="btn btn-navy" href="meet-norman.html">See how he works</a></p></div>
+<p style="margin-top:44px"><a class="btn btn-navy" href="meet-norman.html#modes">See how he works</a></p></div>
 <div style="display:grid;gap:28px"><p class="quote" style="border-left:3px solid var(--cc-gold);padding-left:24px;margin:0;font-size:clamp(24px,2.6vw,34px);line-height:1.3">What if the thing you hold for comfort could also respond to you?</p>
 <div><div class="img-card" style="aspect-ratio:4/5;max-width:480px"><img src="suz-prototypes.jpg" alt="Suz smiling in warm evening light with several Highland cow prototypes" style="width:100%;height:100%;object-fit:cover"></div><p class="cap" style="margin-top:12px">Some of the prototypes</p></div></div></div></div></section>
 <section class="sec bg-brown on-dark" style="padding-block: clamp(36px, 5vw, 64px); padding-bottom: clamp(24px, 3.5vw, 44px)"><div class="wrap center" style="max-width:900px"><p class="eyebrow">What we believe</p><h2 class="h1">We believe <span class="i">different</span> is the whole point.</h2><p class="lede" style="margin:28px auto 0">Norman is for the child in a dental chair, the student at a desk, the client between sessions and the adult winding down at night. Different people, different days, and the same wish for something steady to hold.</p><p class="quote" style="margin-top:40px;color:var(--cc-gold-light)">You're allowed to be different. You're allowed to be you.</p><p style="margin-top:14px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cc-gold-light);opacity:.8">— Norman gets it</p></div></section>
@@ -75,7 +75,7 @@
 class Component extends DCLogic {
   state = { email: '', joined: false, sent: false, open: 0 };
   renderVals() {
-    const v = { email: this.state.email, onEmail: (e) => this.setState({ email: e.target.value }), joined: this.state.joined, notJoined: !this.state.joined, joinSubmit: (e) => { e.preventDefault(); this.setState({ joined: true }); }, goWait: () => { try { localStorage.setItem('cc-jump', 'waitlist'); } catch (e) {} }, sent: this.state.sent, notSent: !this.state.sent, submit: (e) => { e.preventDefault(); this.setState({ sent: true }); } };
+    const v = { email: this.state.email, onEmail: (e) => this.setState({ email: e.target.value }), joined: this.state.joined, notJoined: !this.state.joined, joinSubmit: (e) => { e.preventDefault(); this.setState({ joined: true }); }, goWait: () => { try { localStorage.setItem('cc-jump', 'waitlist'); } catch (e) {} }, goModes: () => { try { localStorage.setItem('cc-jump', 'modes'); } catch (e) {} }, sent: this.state.sent, notSent: !this.state.sent, submit: (e) => { e.preventDefault(); this.setState({ sent: true }); } };
     for (let i = 0; i < 9; i++) { v['o' + i] = this.state.open === i + 1; v['c' + i] = this.state.open !== i + 1; v['t' + i] = () => this.setState({ open: this.state.open === i + 1 ? 0 : i + 1 }); }
     return v;
   }
