@@ -57,7 +57,7 @@
     <h2 class="h1">The hug that <span class="i">hugs back.</span></h2>
     <p class="lede" style="margin:22px auto 36px">Join the waitlist and you'll hear from us first.</p>
     <span data-if="notJoined" style="display:contents"><form data-on-submit="joinSubmit" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><div class="field" style="flex:1 1 300px;max-width:400px;text-align:left"><label class="sr" for="wl-email">Email</label><input id="wl-email" type="email" required="required" placeholder="Enter your email address" data-on-change="onEmail"></div><button class="btn btn-gold" type="submit">Join the waitlist</button></form></span>
-    <span data-if="joined" style="display:contents"><p class="thanks">You're in. Norman is taking his time, and we'll be in touch as he takes shape.</p></span>
+    <span data-if="joined" style="display:contents"><p class="thanks">Almost there. Check your email to confirm your spot. We will write only when Norman has news.</p></span>
   </div>
 </section>
 <footer class="ftr">
@@ -101,7 +101,13 @@ CCboot(Component);
   var err = document.createElement('p');
   err.setAttribute('role', 'alert');
   err.style.cssText = 'margin:16px auto 0;max-width:460px;padding:12px 18px;border-radius:10px;background:#FAF6EE;border:1px solid #C8920E;color:#7A1F1F;font-size:16px;line-height:1.4;display:none';
-  form.insertAdjacentElement('afterend', err);
+  var note = document.createElement('p');
+  note.textContent = 'No spam. Just Norman, when he\u2019s ready.';
+  note.style.cssText = 'margin:18px 0 0;font-family:var(--font-body);font-size:15px;letter-spacing:.02em;opacity:.8;text-align:center';
+  var host = form.closest('section');
+  if (host && /No spam/i.test(host.textContent)) { form.insertAdjacentElement('afterend', err); } else {
+  form.insertAdjacentElement('afterend', note);
+  note.insertAdjacentElement('afterend', err); }
   var OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function fail(msg) {
     busy = false; btn.disabled = false; btn.textContent = label;
