@@ -1097,4 +1097,31 @@ body { margin: 0; background: var(--cc-cream); }
 .set-ic { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--cc-warm); border: 1px solid color-mix(in srgb, var(--cc-gold) 35%, transparent); }
 .set-ic svg { width: 22px; height: 22px; }
 
+/* ---------- mobile tightening (added at export) ---------- */
+@media (max-width: 640px) {
+  :root { --gutter: 20px; }
+  section.sec:not([style*="padding-bottom: 0"]) { padding-top: clamp(34px, 9vw, 48px) !important; padding-bottom: clamp(34px, 9vw, 48px) !important; }
+  section.sec.tight { padding-top: 32px !important; padding-bottom: 36px !important; }
+  .h1 { font-size: clamp(34px, 9.4vw, 42px); }
+  .h2 { font-size: clamp(27px, 7.4vw, 33px); line-height: 1.12; }
+  .lede { font-size: 16.5px; line-height: 1.55; }
+  .stack > * + * { margin-top: 14px; }
+  .cols4, .testi-row, .live-grid, .cols2:has(> .card), .sec:not(.tight) .cols3 { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 14px; scrollbar-width: none; scroll-padding-inline: var(--gutter); -webkit-overflow-scrolling: touch; }
+  .cols4::-webkit-scrollbar, .testi-row::-webkit-scrollbar, .live-grid::-webkit-scrollbar, .cols2:has(> .card)::-webkit-scrollbar, .sec:not(.tight) .cols3::-webkit-scrollbar { display: none; }
+  .cols4 > *, .live-grid > *, .cols2:has(> .card) > *, .sec:not(.tight) .cols3 > * { flex: 0 0 78%; scroll-snap-align: start; }
+  .cols2:has(.img-card) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px !important; }
+  .testi-row { gap: 28px; }
+  .testi-row .testi, .testi-row .testi + .testi { flex: 0 0 86%; scroll-snap-align: start; padding: 0; border: 0; }
+  .testi-row .testi p { font-size: 19px; margin-bottom: 16px; }
+  .fits { margin-top: 24px; }
+  .fit { padding: 14px 0; gap: 4px; }
+  .fit h3 { font-size: 21px; }
+  .fit p { font-size: 15px; line-height: 1.5; }
+  .who-panel { padding: 22px 20px; }
+  .who-panel li { margin-bottom: 8px; }
+  .ftr-in { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-block: 36px 20px; }
+  .ftr-in > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) { #modes .split { grid-template-columns: minmax(0, 1fr); } }
+
 .tq.c { margin-left: 3px; vertical-align: -.2em; }
