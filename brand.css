@@ -1151,6 +1151,39 @@ body { margin: 0; background: var(--cc-cream); }
   /* waitlist form */
   body[data-page="Home"] #waitlist .lede { margin-bottom: 20px !important; }
   body[data-page="Home"] #waitlist form { gap: 18px !important; }
+  /* round 2 */
+  body[data-page="Home"] .fact.ic span:not(.fact-ic) { max-width: 25ch; margin-inline: auto; }
+  body[data-page="Home"] .wrap.center > p.quote { font-size: 22px !important; }
+  body[data-page="Home"] p:has(> a.link-arrow[href$="#modes"]) { margin-top: 4px !important; }
+  body[data-page="Home"] .cols3:has(> .dif-hero) > .dif-hero { background: var(--cc-brown-dark); border: 1px solid var(--cc-brown-dark); border-top: 2px solid var(--cc-gold); }
+  body[data-page="Home"] .dif-hero p:not(.lede) { color: var(--cc-gold-light) !important; }
+  body[data-page="Home"] .dif-hero p.lede { color: var(--cc-cream) !important; }
+  body[data-page="Home"] .stack > p.quote { font-size: 22px; line-height: 1.32; }
+  body[data-page="Home"] .stack > p.quote + p.small { font-size: 12.5px; margin-top: 6px !important; }
+  body[data-page="Home"] .stack > p.quote + p.small + p.lede { margin-top: 14px !important; font-size: 16px; }
+  body[data-page="Home"] .stack > p.lede + p { margin-top: 16px !important; }
+  body[data-page="Home"] .who-cols ul { gap: 6px; }
+  body[data-page="Home"] .testi-row .testi { justify-content: flex-start; }
+  body[data-page="Home"] .testi-row .testi p { margin-bottom: 8px; }
+  body[data-page="Home"] .testi-row .testi cite { margin-top: 0; }
+  body[data-page="Home"] .on-dark .fine { color: rgba(250, 246, 238, .42); }
+  body[data-page="Home"] footer.ftr { border-top: 1px solid rgba(200, 146, 14, .4); }
+}
+
+@media (max-width: 640px) {
+  /* simple to operate */
+  body[data-page="Meet-Norman"] .op-grid { gap: 14px; }
+  body[data-page="Meet-Norman"] .op-card { padding: 20px 20px 22px; gap: 8px; border-radius: 18px; }
+  body[data-page="Meet-Norman"] .op-card > svg { width: 54px; height: 54px; order: 1; }
+  body[data-page="Meet-Norman"] .op-card > h3 { order: 2; font-size: 25px; margin-top: 4px; }
+  body[data-page="Meet-Norman"] .op-card > .mono:first-of-type { order: 3; }
+  body[data-page="Meet-Norman"] .op-card > p { order: 4; margin-top: 2px; }
+  body[data-page="Meet-Norman"] .op-card > .op-cycle { order: 5; }
+  body[data-page="Meet-Norman"] .op-card > .op-back { order: 6; }
+  /* whats inside and everyday life: no dark band, tighter title gap */
+  body[data-page="Meet-Norman"] .cols3:has(> .card) { margin-top: 20px !important; }
+  body[data-page="Meet-Norman"] .live-grid { margin-top: 20px !important; }
+  body[data-page="Meet-Norman"] .cols3:has(> .card) > .card, body[data-page="Meet-Norman"] .live-card { box-shadow: 0 1px 4px rgba(42, 26, 8, .07); border: 1px solid var(--hair); }
 }
 
 .tq.c { margin-left: 3px; vertical-align: -.2em; }
