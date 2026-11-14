@@ -102,6 +102,59 @@ CCboot(Component);
 </script>
 <script>
 (function () {
+  var input = document.getElementById('wl-email');
+  if (!input) return;
+  var form = input.closest('form');
+  var btn = form.querySelector('button');
+  var label = btn.textContent;
+  var busy = false;
+  var err = document.createElement('p');
+  err.setAttribute('role', 'alert');
+  err.style.cssText = 'margin:14px 0 0;font-size:15px;display:none;color:#8C3A3A';
+  form.insertAdjacentElement('afterend', err);
+  var OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function fail(msg) {
+    busy = false; btn.disabled = false; btn.textContent = label;
+    err.textContent = msg || 'Sorry, that did not go through. Please check your connection and try again.';
+    err.style.display = 'block';
+  }
+  function done() {
+    form._ok = true;
+    if (btn.type === 'submit') form.requestSubmit(); else btn.click();
+  }
+  function send() {
+    var v = input.value.trim();
+    if (busy) return;
+    busy = true; err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Joining...';
+    var cb = 'ccml' + Date.now();
+    var sc = document.createElement('script');
+    var timer = setTimeout(function () { cleanup(); fail(); }, 12000);
+    function cleanup() { clearTimeout(timer); delete window[cb]; if (sc.parentNode) sc.parentNode.removeChild(sc); }
+    window[cb] = function (r) {
+      cleanup();
+      if (r && r.success === false) { fail('Please enter a valid email address.'); return; }
+      busy = false; btn.disabled = false; btn.textContent = label; done();
+    };
+    sc.onerror = function () { cleanup(); fail(); };
+    sc.src = 'https://assets.mailerlite.com/jsonp/2294705/forms/185819025403545350/subscribe?fields%5Bemail%5D=' + encodeURIComponent(v) + '&ml-submit=1&anticsrf=true&callback=' + cb;
+    document.body.appendChild(sc);
+  }
+  function intercept(e) {
+    if (form._ok) return false;
+    var v = input.value.trim();
+    if (!OK.test(v)) return false;
+    e.preventDefault(); e.stopPropagation();
+    send();
+    return true;
+  }
+  document.addEventListener('submit', function (e) { if (e.target === form) intercept(e); }, true);
+  document.addEventListener('click', function (e) { if (btn.contains(e.target) && btn.type !== 'submit') intercept(e); }, true);
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter') intercept(e); }, true);
+})();
+</script>
+<script>
+(function () {
   var form = document.getElementById('p-name').closest('form');
   var btn = form.querySelector('button[type="submit"]');
   var label = btn.textContent;
