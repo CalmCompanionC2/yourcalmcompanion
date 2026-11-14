@@ -1124,4 +1124,33 @@ body { margin: 0; background: var(--cc-cream); }
 }
 @media (max-width: 900px) { #modes .split { grid-template-columns: minmax(0, 1fr); } }
 
+@media (max-width: 640px) {
+  /* hero: facts to quote */
+  body[data-page="Home"] .cols3:has(> .fact) { padding-bottom: 0 !important; }
+  body[data-page="Home"] .wrap.center:has(> p.quote) { margin-top: 10px !important; }
+  /* modes: lighter cards, tighter intro */
+  body[data-page="Home"] .cols4 { margin-top: 22px !important; }
+  body[data-page="Home"] .cols4 > .card { box-shadow: 0 1px 4px rgba(42, 26, 8, .07); border: 1px solid var(--hair); }
+  /* how he is different: card treatment */
+  body[data-page="Home"] .cols3:has(> .dif-hero) { margin-top: 26px !important; }
+  body[data-page="Home"] .cols3:has(> .dif-hero) > div:not(.dif-hero) { background: #fff; border: 1px solid var(--hair) !important; border-radius: 14px; padding: 20px 20px 22px !important; box-shadow: 0 1px 4px rgba(42, 26, 8, .07); }
+  body[data-page="Home"] .cols3:has(> .dif-hero) > .dif-hero { margin: 0 !important; border-radius: 14px; padding: 20px 20px 22px; }
+  body[data-page="Home"] p:has(> a.link-arrow[href$="#compare"]) { margin-top: 8px !important; }
+  /* founder */
+  body[data-page="Home"] .stack > p.quote { margin-bottom: 0 !important; }
+  body[data-page="Home"] .stack > p.quote + p.small { margin-top: 8px !important; }
+  /* designed for */
+  body[data-page="Home"] .who-panel { padding: 22px 20px 24px; margin-top: 32px; }
+  body[data-page="Home"] .who-cols { gap: 10px; margin-top: 18px; }
+  body[data-page="Home"] .who-cols ul { gap: 9px; }
+  body[data-page="Home"] .who-cols li { font-size: 15px; line-height: 1.38; padding-left: 22px; }
+  body[data-page="Home"] .who-cols li::before { top: .5em; width: 7px; height: 7px; }
+  /* in their words: divider */
+  body[data-page="Home"] .testi-row .testi + .testi { border-left: 1px solid rgba(250, 246, 238, .2) !important; padding-left: 24px !important; }
+  body[data-page="Home"] .testi-row .testi:first-child { padding-right: 4px; }
+  /* waitlist form */
+  body[data-page="Home"] #waitlist .lede { margin-bottom: 20px !important; }
+  body[data-page="Home"] #waitlist form { gap: 18px !important; }
+}
+
 .tq.c { margin-left: 3px; vertical-align: -.2em; }
