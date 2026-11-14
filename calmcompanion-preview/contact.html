@@ -85,7 +85,7 @@ CCboot(Component);
   var busy = false;
   var err = document.createElement('p');
   err.setAttribute('role', 'alert');
-  err.style.cssText = 'margin:14px 0 0;font-size:15px;display:none;color:#8C3A3A';
+  err.style.cssText = 'margin:16px auto 0;max-width:460px;padding:12px 18px;border-radius:10px;background:#FAF6EE;border:1px solid #C8920E;color:#7A1F1F;font-size:16px;line-height:1.4;display:none';
   form.insertAdjacentElement('afterend', err);
   var OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function fail(msg) {
@@ -102,18 +102,13 @@ CCboot(Component);
     if (busy) return;
     busy = true; err.style.display = 'none';
     btn.disabled = true; btn.textContent = 'Joining...';
-    var cb = 'ccml' + Date.now();
-    var sc = document.createElement('script');
-    var timer = setTimeout(function () { cleanup(); fail(); }, 12000);
-    function cleanup() { clearTimeout(timer); delete window[cb]; if (sc.parentNode) sc.parentNode.removeChild(sc); }
-    window[cb] = function (r) {
-      cleanup();
-      if (r && r.success === false) { fail('Please enter a valid email address.'); return; }
-      busy = false; btn.disabled = false; btn.textContent = label; done();
-    };
-    sc.onerror = function () { cleanup(); fail(); };
-    sc.src = 'https://assets.mailerlite.com/jsonp/2294705/forms/185819025403545350/subscribe?fields%5Bemail%5D=' + encodeURIComponent(v) + '&ml-submit=1&anticsrf=true&callback=' + cb;
-    document.body.appendChild(sc);
+    var data = new URLSearchParams();
+    data.append('fields[email]', v);
+    data.append('ml-submit', '1');
+    data.append('anticsrf', 'true');
+    fetch('https://assets.mailerlite.com/jsonp/2294705/forms/185819025403545350/subscribe', { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () { busy = false; btn.disabled = false; btn.textContent = label; done(); })
+      .catch(function () { fail(); });
   }
   function intercept(e) {
     if (form._ok) return false;
