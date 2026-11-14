@@ -75,5 +75,47 @@ class Component extends DCLogic {
 
 CCboot(Component);
 </script>
+<script>
+(function () {
+  var form = document.getElementById('c-name').closest('form');
+  var btn = form.querySelector('button[type="submit"]');
+  var label = btn.textContent;
+  var trap = document.createElement('input');
+  trap.type = 'checkbox'; trap.tabIndex = -1; trap.setAttribute('aria-hidden', 'true'); trap.autocomplete = 'off';
+  trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+  form.appendChild(trap);
+  var err = document.createElement('p');
+  err.setAttribute('role', 'alert');
+  err.style.cssText = 'margin:0;color:#8C3A3A;font-size:15px;display:none';
+  btn.insertAdjacentElement('afterend', err);
+  document.addEventListener('submit', function (e) {
+    if (e.target !== form || form._ok) return;
+    e.preventDefault(); e.stopPropagation();
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Sending...';
+    var body = {
+      access_key: '3dd258ea-7cc3-4987-880d-23ac9f86d000',
+      subject: 'CalmCompanion contact message',
+      from_name: 'CalmCompanion website',
+      name: document.getElementById('c-name').value,
+      email: document.getElementById('c-mail').value,
+      botcheck: trap.checked
+    };
+    body['topic'] = document.getElementById('c-topic').value;
+    body.message = document.getElementById('c-msg').value;
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.success) { form._ok = true; form.requestSubmit(); return; }
+        throw new Error('failed');
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = label;
+        err.textContent = 'Sorry, that did not send. Please check your connection and try again.';
+        err.style.display = 'block';
+      });
+  }, true);
+})();
+</script>
 </body>
 </html>
