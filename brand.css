@@ -1186,4 +1186,52 @@ body { margin: 0; background: var(--cc-cream); }
   body[data-page="Meet-Norman"] .cols3:has(> .card) > .card, body[data-page="Meet-Norman"] .live-card { box-shadow: 0 1px 4px rgba(42, 26, 8, .07); border: 1px solid var(--hair); }
 }
 
+@media (max-width: 640px) {
+  /* waitlist + footer: all pages */
+  #waitlist .lede { margin-bottom: 20px !important; }
+  #waitlist form { gap: 18px !important; }
+  footer.ftr { border-top: 1px solid rgba(200, 146, 14, .4); }
+
+  /* Home */
+  body[data-page="Home"] .fact.ic { gap: 3px; padding-block: 0; }
+  body[data-page="Home"] .fact-ic { width: 54px; height: 54px; margin-bottom: 4px; }
+  body[data-page="Home"] .fact-ic svg { width: 30px; height: 30px; }
+  body[data-page="Home"] .cols3:has(> .fact) { padding-top: 20px !important; }
+  body[data-page="Home"] .fine[style*="margin-top: 59px"] { margin-top: 6px !important; color: #D9CBAA !important; }
+  body[data-page="Home"] .on-dark .fine { color: #D9CBAA; }
+
+  /* Science */
+  body[data-page="The-Science"] .sci-cream .wrap.split { gap: 4px; }
+  body[data-page="The-Science"] .glance-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 14px; scroll-padding-inline: var(--gutter); scrollbar-width: none; margin-top: 20px; }
+  body[data-page="The-Science"] .glance-row::-webkit-scrollbar { display: none; }
+  body[data-page="The-Science"] .glance-row > .glance { flex: 0 0 72%; scroll-snap-align: start; }
+  body[data-page="The-Science"] .cols2:has(.mot) { display: grid; grid-template-columns: minmax(0, 1fr); overflow: visible; margin-inline: 0; padding: 0; gap: 16px !important; margin-top: 22px !important; }
+  body[data-page="The-Science"] .cols2:has(.mot) > .card { padding: 24px 22px !important; }
+  body[data-page="The-Science"] .table-scroll { overflow: visible; }
+  body[data-page="The-Science"] .cmp { table-layout: fixed; font-size: 13.5px; }
+  body[data-page="The-Science"] .cmp th, body[data-page="The-Science"] .cmp td { padding: 11px 3px; }
+  body[data-page="The-Science"] .cmp th:first-child, body[data-page="The-Science"] .cmp td:first-child { width: 38%; padding-left: 4px; line-height: 1.25; }
+  body[data-page="The-Science"] .cmp thead th { font-size: 9.5px; letter-spacing: .05em; line-height: 1.3; vertical-align: bottom; }
+  body[data-page="The-Science"] #compare .fine { max-width: 100% !important; }
+
+  /* Our Story: reorder so quotes, photo and button read in sequence */
+  body[data-page="Our-Story"] div[style*="auto-fit,minmax(min(100%,340px)"] { display: flex !important; flex-direction: column; gap: 16px !important; }
+  body[data-page="Our-Story"] div[style*="auto-fit,minmax(min(100%,340px)"] > .stack, body[data-page="Our-Story"] div[style*="auto-fit,minmax(min(100%,340px)"] > div:not(.stack) { display: contents !important; }
+  body[data-page="Our-Story"] .stack > * { margin: 0 !important; }
+  body[data-page="Our-Story"] .stack > p:nth-child(1) { order: 1; }
+  body[data-page="Our-Story"] .stack > p:nth-child(2) { order: 2; }
+  body[data-page="Our-Story"] div[style*="auto-fit"] > div:not(.stack) > p.quote { order: 3; margin: 10px 0 !important; font-size: 23px !important; }
+  body[data-page="Our-Story"] div[style*="auto-fit"] > div:not(.stack) > div { order: 4; margin-bottom: 10px; }
+  body[data-page="Our-Story"] .stack > p:nth-child(3) { order: 5; }
+  body[data-page="Our-Story"] .stack > p:nth-child(4) { order: 6; }
+  body[data-page="Our-Story"] .stack > p.quote { order: 7; margin: 14px 0 6px !important; font-size: 23px !important; }
+  body[data-page="Our-Story"] .stack > p:last-child { order: 8; margin-top: 6px !important; }
+
+  /* FAQ hero */
+  body[data-page="Contact"] .q-say { left: -18px; }
+  body[data-page="Contact"] .sec.bg-warm > .wrap { row-gap: 0 !important; }
+  body[data-page="Contact"] .sec.bg-warm > .wrap > div[style*="flex:1 1 380px"] { padding-bottom: 4px !important; }
+  body[data-page="Contact"] .sec.bg-warm > .wrap > div[style*="position:relative"] { margin-top: 10px !important; }
+}
+
 .tq.c { margin-left: 3px; vertical-align: -.2em; }
