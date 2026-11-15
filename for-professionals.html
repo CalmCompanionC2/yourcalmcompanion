@@ -82,15 +82,12 @@
   </div>
 </section>
 
-<section class="sec tight bg-warm" style="padding-block: clamp(28px, 3.5vw, 44px)"><div class="wrap"><p class="fine" style="max-width:90ch">Norman is a wellness companion designed to support self-regulation. He is not a medical device and is not intended to diagnose, treat or cure any condition. He is not a substitute for professional care. Norman is in prototype and early testing.</p></div></section>
-
-
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr-in">
       <div>
         <a class="wm" href="index.html">CalmCompanion™<em>Calm, by Design™</em></a>
-        <p class="fine" style="margin-top:22px;max-width:44ch;color:var(--cc-brown-light)">Norman is a wellness product designed to help you find calm. He is not a medical device and is not intended to diagnose, treat or cure any condition.</p>
+        <p class="fine" style="margin-top:22px;max-width:44ch;color:var(--cc-brown-light)">Norman is a wellness companion designed to support self-regulation. He is not a medical device and is not intended to diagnose, treat or cure any condition, and he is not a substitute for professional care. Norman is in prototype and early testing.</p>
       </div>
       <div><h5>Explore</h5><a href="meet-norman.html">Meet Norman</a><a href="the-science.html">The Science</a><a href="for-professionals.html">For Professionals</a></div>
       <div><h5>About</h5><a href="our-story.html">Our Story</a><a href="contact.html">FAQ &amp; Contact</a><a href="#waitlist">Join the waitlist</a></div>
@@ -114,6 +111,41 @@ class Component extends DCLogic {
 }
 
 CCboot(Component);
+</script>
+<script>
+(function () {
+  var SEL = '.cols4, .testi-row, .glance-row, .live-grid, .cols2, .cols3';
+  var mq = window.matchMedia('(max-width: 640px)');
+  function build() {
+    document.querySelectorAll('.cc-dots').forEach(function (d) { d.remove(); });
+    if (!mq.matches) return;
+    document.querySelectorAll(SEL).forEach(function (row) {
+      if (getComputedStyle(row).overflowX !== 'auto') return;
+      var kids = Array.prototype.slice.call(row.children);
+      if (kids.length < 2 || row.scrollWidth <= row.clientWidth + 4) return;
+      var box = document.createElement('div'); box.className = 'cc-dots'; box.setAttribute('aria-hidden', 'true');
+      var btns = kids.map(function (k, i) {
+        var b = document.createElement('button'); b.type = 'button'; b.tabIndex = -1;
+        b.addEventListener('click', function () { k.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); });
+        box.appendChild(b); return b;
+      });
+      row.insertAdjacentElement('afterend', box);
+      function upd() {
+        var mid = row.scrollLeft + row.clientWidth / 2, best = 0, bd = 1e9;
+        kids.forEach(function (k, i) {
+          var d = Math.abs(k.offsetLeft - row.offsetLeft + k.offsetWidth / 2 - mid);
+          if (d < bd) { bd = d; best = i; }
+        });
+        if (row.scrollLeft + row.clientWidth >= row.scrollWidth - 2) best = kids.length - 1;
+        btns.forEach(function (b, i) { b.classList.toggle('on', i === best); });
+      }
+      row.addEventListener('scroll', upd, { passive: true }); upd();
+    });
+  }
+  window.addEventListener('load', function () { setTimeout(build, 400); });
+  mq.addEventListener('change', build);
+  window.addEventListener('resize', function () { clearTimeout(window.__ccd); window.__ccd = setTimeout(build, 250); });
+})();
 </script>
 <script>
 (function () {
