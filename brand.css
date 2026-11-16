@@ -1233,7 +1233,7 @@ body { margin: 0; background: var(--cc-cream); }
   body[data-page="Our-Story"] div[style*="auto-fit"] > div:not(.stack) > div { order: 4; margin-bottom: 10px; }
   body[data-page="Our-Story"] .stack > p:nth-child(3) { order: 5; }
   body[data-page="Our-Story"] .stack > p:nth-child(4) { order: 6; }
-  body[data-page="Our-Story"] .stack > p.quote { order: 7; margin: 14px 0 6px !important; font-size: 23px !important; }
+  body[data-page="Our-Story"] .stack > p.quote { order: 7; margin: 10px 0 6px !important; font-size: 23px !important; }
   body[data-page="Our-Story"] .stack > p:last-child { order: 8; margin-top: 6px !important; }
 
   /* FAQ hero */
@@ -1262,6 +1262,15 @@ body[data-page="Home"] .dif-hero p.lede { color: var(--cc-cream) !important; }
   body[data-page="Our-Story"] .stack > h2.h2 ~ p + p { margin-top: 16px !important; }
   /* FAQ: Norman sits on the bottom of the beige hero */
   body[data-page="Contact"] .sec.bg-warm > .wrap > div[style*="position:relative"] { margin-bottom: 0 !important; }
+}
+
+.eb-w { white-space: nowrap; }
+@media (max-width: 640px) {
+  /* Home hero eyebrow: one line where it fits, wraps between words if not */
+  body[data-page="Home"] .hero-split .eyebrow { font-size: 11px; letter-spacing: .1em; }
+  /* Home fact row: cards so the row reads as swipable */
+  body[data-page="Home"] .cols3:has(> .fact) { padding-bottom: 10px !important; }
+  body[data-page="Home"] .cols3:has(> .fact) > .fact { background: #fff; border: 1px solid var(--hair); border-radius: 14px; box-shadow: 0 1px 4px rgba(42, 26, 8, .07); padding: 22px 16px 24px !important; }
 }
 
 .tq.c { margin-left: 3px; vertical-align: -.2em; }
